@@ -60,6 +60,7 @@ rect_scale = Vector2( 10, 10 )
 text = "YOU WIN!"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 margin_left = -52.0
 margin_top = 23.0
 margin_right = 51.0

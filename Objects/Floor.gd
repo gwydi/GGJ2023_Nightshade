@@ -22,8 +22,6 @@ var speedModsAgain = {
 	10: 1, #not valid, tihi
 }
 
-onready var tilemap = $TileMap
-
 var tilemaps = []
 
 func _ready():
@@ -31,13 +29,6 @@ func _ready():
 	tilemaps.append($TileMapBrick)
 	tilemaps.append($TileMapDirt)
 	Utils.Floor = self
-
-
-func getSpeedModifier(worldPosition :Vector2):
-	#("inc Position: " + str(worldPosition))
-	if (tilemap != null):
-		return tilemap.getModifier(worldPosition)
-	return 1
 
 func getTileSpeedMod(var WorldPosition: Vector2):
 	var tileType = -1

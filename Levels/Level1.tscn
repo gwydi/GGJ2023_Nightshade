@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Wall_FORTESTING.tscn" type="PackedScene" id=10]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=4]
 resource_local_to_scene = true
@@ -170,6 +171,8 @@ points = PoolVector2Array( 109, 551, 161, 993, 474, 1154, 496, 1360, 194, 1654, 
 
 [node name="Sprite2" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1382, 269 )
-rotation = 0.869466
+rotation = 1.54675
+
+[node name="Hud" parent="." instance=ExtResource( 11 )]
 
 [editable path="EnemyManager"]

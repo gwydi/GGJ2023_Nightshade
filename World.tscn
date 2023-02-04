@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Pot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
+[ext_resource path="res://Gardener.tscn" type="PackedScene" id=5]
 [ext_resource path="res://tilemap.png" type="Texture" id=6]
 [ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=7]
+[ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 resource_local_to_scene = true
@@ -69,5 +71,15 @@ zoom = Vector2( 2, 2 )
 [node name="Manhole" parent="." instance=ExtResource( 7 )]
 position = Vector2( 850, 250 )
 scale = Vector2( 0.25, 0.25 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 8 )]
+
+[node name="Path" type="Line2D" parent="EnemyManager"]
+scale = Vector2( 0.158333, 0.158333 )
+points = PoolVector2Array( 1667.37, -6.3158, 4326.32, -132.632, 3770.53, 1446.32, 7743.17, 903.16, 7591.59, 3429.48, 4016.85, 3088.43 )
+
+[node name="Enemy" parent="EnemyManager" instance=ExtResource( 5 )]
+
+[connection signal="targetReached" from="EnemyManager/Enemy" to="EnemyManager" method="_on_Enemy_targetReached"]
 
 [editable path="Floor"]

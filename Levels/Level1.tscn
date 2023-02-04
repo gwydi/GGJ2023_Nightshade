@@ -89,10 +89,10 @@ resource_local_to_scene = true
 [node name="Level1" type="Node2D"]
 
 [node name="Pot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 415, -33 )
+position = Vector2( 91, 69 )
 
 [node name="Pot2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 892, 794 )
+position = Vector2( 535, 958 )
 
 [node name="Pot4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2099, 545 )
@@ -153,7 +153,7 @@ script = ExtResource( 2 )
 position = Vector2( 637, 625 )
 
 [node name="Manhole" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1450, 476 )
+position = Vector2( 1347, 150 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 540 )

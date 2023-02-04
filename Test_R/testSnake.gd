@@ -25,6 +25,7 @@ var surviveTimer = surviveSeconds
 
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
+var speedModifier = 1
 
 signal player_died_soft
 
@@ -74,6 +75,9 @@ func _physics_process(delta):
 	if active and moving:
 		global_position += velocity
 		testLine.global_position -= velocity
+		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
+		
+		
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance

@@ -15,12 +15,3 @@ func connect_pot(var id: int):
 
 func update_pot(var id: int):
 	potPointID = id
-
-func add_Deadbranch(var Points):
-	var newDeadBranch = Line2D.new()
-	newDeadBranch.points = Points
-	newDeadBranch.texture = deadBranchTex
-	newDeadBranch.texture_mode = Line2D.LINE_TEXTURE_TILE
-	
-	add_child(newDeadBranch)
-	newDeadBranch.set_owner(self)

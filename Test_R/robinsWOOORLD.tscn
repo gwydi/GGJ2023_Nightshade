@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Test_R/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Test_R/Pot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Test_R/robinsWOOORLD.gd" type="Script" id=3]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 34, 86 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -13,4 +16,4 @@
 position = Vector2( 417, 206 )
 
 [node name="Pot2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 16, 1 )
+position = Vector2( 103, -1 )

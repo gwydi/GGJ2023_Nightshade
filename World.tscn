@@ -17,7 +17,6 @@ position = Vector2( 2090, 847 )
 position = Vector2( 966, 1232 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -743, -507 )
 surviveSeconds = 100000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

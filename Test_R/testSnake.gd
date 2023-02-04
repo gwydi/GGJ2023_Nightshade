@@ -20,8 +20,11 @@ var startLocation = Vector2(0,0)
 var connectedPots = []
 
 var active = true
+var moving = true
 var surviveTimer = surviveSeconds
 
+var chargeTimer = 0
+var chargeMAXThreshhold = 3
 var speedModifier = 1
 
 signal player_died_soft
@@ -46,6 +49,18 @@ func _process(delta):
 		surviveTimer -= delta
 		timer -= delta
 		
+		if Input.is_action_pressed("ui_down"):
+			chargeTimer += delta
+			moving = false
+		else:
+			moving = true
+			chargeTimer = chargeTimer * 0.75
+		
+		if chargeTimer > 0 and not Input.is_action_pressed("ui_down"):
+			velocity = velocity * (chargeTimer + 1)
+		
+		print(chargeTimer)
+		print(velocity)
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -54,15 +69,15 @@ func _process(delta):
 		rootHead.look_at(global_position + velocity) 
 		rootHead.rotation_degrees += 90
 		
-		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
-		
-		
 	#print(velocity)
 
 func _physics_process(delta):
-	if active:
-		global_position += velocity * speedModifier
-		testLine.global_position -= velocity * speedModifier
+	if active and moving:
+		global_position += velocity
+		testLine.global_position -= velocity
+		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
+		
+		
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance
@@ -78,7 +93,6 @@ func reset_checkpoint(var playerInstance):
 		print("died and have NO pots")
 		newPlayer.position = startLocation
 		newPlayer.testLine.global_position -= startLocation
-	
 	
 	print("done with reseting player")
 

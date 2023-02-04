@@ -23,6 +23,7 @@ var active = true
 var moving = true
 var surviveTimer = surviveSeconds
 
+var preChargeVelocity = Vector2.ZERO
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
 var speedModifier = 1
@@ -33,6 +34,7 @@ signal player_died_soft
 func _ready():
 	print("started")
 	testLine.points.empty()
+	testLine.global_position -= global_position
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,14 +52,13 @@ func _process(delta):
 		timer -= delta
 		
 		if Input.is_action_pressed("ui_down"):
-			chargeTimer += delta
+			chargeTimer += delta * 5
 			moving = false
+			preChargeVelocity = velocity.normalized() # normalized so its always a clean direction and cant accidentaly be stacked
 		else:
 			moving = true
-			chargeTimer = chargeTimer * 0.75
+			chargeTimer = clamp(chargeTimer - delta,0,2000) 
 		
-		if chargeTimer > 0 and not Input.is_action_pressed("ui_down"):
-			velocity = velocity * (chargeTimer + 1)
 		
 		print(chargeTimer)
 		print(velocity)
@@ -68,15 +69,12 @@ func _process(delta):
 			velocity = velocity.rotated(ROTATION_SPEED * delta)
 		rootHead.look_at(global_position + velocity) 
 		rootHead.rotation_degrees += 90
-		
-	#print(velocity)
 
 func _physics_process(delta):
 	if active and moving:
-		global_position += velocity
-		testLine.global_position -= velocity
+		global_position += velocity * (chargeTimer + 1) * speedModifier
+		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
 		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
-		
 		
 
 func reset_checkpoint(var playerInstance):

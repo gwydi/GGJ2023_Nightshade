@@ -2,12 +2,12 @@
 
 [ext_resource path="res://Test_R/testSnake.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Test_R/rootOrSmth.png" type="Texture" id=3]
+[ext_resource path="res://Test_R/Root1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -17,6 +17,7 @@ ROTATION_SPEED = 2.0
 
 [node name="TestLine" type="Line2D" parent="."]
 width = 20.0
+default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
 texture_mode = 1
 
@@ -25,5 +26,9 @@ rotation = 1.5708
 scale = Vector2( 0.5, 1 )
 texture = ExtResource( 2 )
 
-[node name="RootCollision" type="CollisionShape2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="RootCollision" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 1 )
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

@@ -25,7 +25,8 @@ var points = 0
 var startLocation = Vector2(0,0)
 var connectedPots = []
 
-var water = 2000
+var maxWater = 2000
+var water = maxWater
 
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
@@ -127,9 +128,13 @@ func _on_DetectionArea_body_entered(body):
 		if not connectedPots.has(body):
 			body.connect_pot(testLine.points.size())
 			connectedPots.append(body)
+			water = maxWater
 			print("Connected Root to Pot with ID: " + str(testLine.points.size()))
 		else:
 			body.update_pot(testLine.points.size())
+	
+	if body.is_in_group("Wall"):
+		emit_signal("player_died_soft")
 
 func _on_DetectionArea_area_entered(area):
 	if area.is_in_group("Manhole"):

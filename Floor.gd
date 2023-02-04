@@ -14,10 +14,23 @@ export(Dictionary) var speedMods = {
 	22: 3,
 }
 
+var speedModsAgain = {
+	-1: 1,#not valid, tihi
+	1: 2.5, #Dirt
+	2: 1.5, #Brick
+	3: 0.5, #Stone
+	10: 1, #not valid, tihi
+}
+
 onready var tilemap = $TileMap
 
+var tilemaps = []
+
 func _ready():
-	pass
+	tilemaps.append($TileMapStone)
+	tilemaps.append($TileMapBrick)
+	tilemaps.append($TileMapDirt)
+	Utils.Floor = self
 
 
 func getSpeedModifier(worldPosition :Vector2):
@@ -25,3 +38,13 @@ func getSpeedModifier(worldPosition :Vector2):
 	if (tilemap != null):
 		return tilemap.getModifier(worldPosition)
 	return 1
+
+func getTileSpeedMod(var WorldPosition: Vector2):
+	var tileType = -1
+	for tm in tilemaps:
+		var mapPosition = tm.world_to_map(WorldPosition * 4)
+		var tileIndex = tm.get_cell(mapPosition.x, mapPosition.y)
+		if tileIndex != -1 and tm.z_index > tileType:
+			tileType = tm.z_index
+	
+	return speedModsAgain[tileType]

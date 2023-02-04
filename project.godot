@@ -24,6 +24,10 @@ config/name="GGJ2023_Nightshade"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Utils="*res://ScriptsNStuff/Utils.gd"
+
 [display]
 
 window/size/width=1920

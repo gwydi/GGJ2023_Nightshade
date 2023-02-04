@@ -1,24 +1,42 @@
 extends Node
 
 var poolPosition = Vector2(-1000, -1000)
-export(PoolVector2Array) var points
+var points
 var enemyInstance 
 var timer :Timer
-var waitTime = 30
+var waitTime = 5
+var currentPointIndex = 0
 
 func _ready():
 	enemyInstance = $Enemy
 	timer = $Timer
+	points = $Path.points
 	_reset_position()
+	timer.wait_time = waitTime
+	timer.start()
 	
 func _reset_position():
 	enemyInstance.position = poolPosition
 
 func _spawn():
-	points[0]
+	enemyInstance.position = points[0]
+	currentPointIndex = 1
+	_next()
 
 func _done():
+	_reset_position()
 	timer.wait_time = waitTime
+	timer.start()
 
 func _on_Timer_timeout():
 	_spawn()
+
+func _on_Enemy_targetReached():
+	_next()
+
+func _next():
+	if (len(points) > currentPointIndex):
+		enemyInstance.setTarget(points[currentPointIndex])
+		currentPointIndex += 1
+	else:
+		_done()

@@ -37,7 +37,7 @@ signal player_died_soft
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("started")
-	velocity = Vector2(randf() -0.5, randf() - 0.5)
+	velocity = Vector2(randf() -0.5, randf() - 0.5).normalized()
 	surviveTimer = surviveSeconds
 	testLine.points.empty()
 	testLine.global_position -= global_position
@@ -63,7 +63,7 @@ func _process(delta):
 			preChargeVelocity = velocity.normalized() # normalized so its always a clean direction and cant accidentaly be stacked
 		else:
 			moving = true
-			chargeTimer = clamp(chargeTimer - delta*5,0,2000) 
+			chargeTimer = clamp(chargeTimer - delta * 10,0,2000) 
 		
 		
 		#print(chargeTimer)

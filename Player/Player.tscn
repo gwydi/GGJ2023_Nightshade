@@ -29,7 +29,7 @@ texture = ExtResource( 3 )
 position = Vector2( -400, 0 )
 scale = Vector2( 20, 20 )
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." groups=["Player"]]
 position = Vector2( 1, 0 )
 __meta__ = {
 "_edit_group_": true

@@ -8,5 +8,5 @@ func _process(delta):
 	var playerMaxWater = Utils.player.maxWater
 	print ("playerwater" + str(playerWater) + "/" + str(playerMaxWater))
 	if playerWater != null:
-		$Control/TextureProgress.value = playerWater / playerMaxWater * 100
+		$Control/TextureProgress.value = playerWater / playerMaxWater * 1000
 

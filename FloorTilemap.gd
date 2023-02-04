@@ -1,9 +1,7 @@
 extends TileMap
 
-var tilemapScale = 0.25
-
 func _ready():
-	scale = scale * tilemapScale
+	pass
 
 func getModifier(playerPosition: Vector2):
 	var mapPosition = world_to_map(playerPosition * 4)

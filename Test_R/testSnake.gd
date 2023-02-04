@@ -62,6 +62,9 @@ func _process(delta):
 		
 		print(chargeTimer)
 		print(velocity)
+		print("---")
+		print("mod: " + str(speedModifier))
+		print("---")
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 

@@ -23,7 +23,7 @@ var connectedPots = []
 
 var active = true
 var moving = true
-var water = 3000
+var water = 2000
 
 
 var chargeTimer = 0
@@ -35,6 +35,7 @@ signal player_died_soft
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("started")
+	Utils.connect_player(self)
 	velocity = Vector2(randf() -0.5, randf() - 0.5).normalized()
 	
 	testLine.points.empty()
@@ -62,7 +63,7 @@ func _process(delta):
 			moving = false
 		else:
 			moving = true
-			chargeTimer = clamp(chargeTimer - delta * 10,0,2000) 
+			chargeTimer = clamp(chargeTimer - delta * 7,0,2000) 
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -72,7 +73,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if active and moving:
-		speedModifier = get_parent().get_node("Floor").getTileSpeedMod(position)
+		speedModifier = Utils.Floor.getTileSpeedMod(position)
 		print(speedModifier)
 		#print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
@@ -88,7 +89,7 @@ func _physics_process(delta):
 		
 	elif active and not moving:
 		if Input.is_action_pressed("ui_down"):
-			water -= velocity.length() * (chargeTimer + 1) * 2
+			water -= velocity.length() * (chargeTimer + 1)
 			
 		progBar.value = water
 

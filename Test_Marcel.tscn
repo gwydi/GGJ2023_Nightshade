@@ -14,3 +14,9 @@
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
 
 [node name="Enemy" parent="EnemyManager" instance=ExtResource( 4 )]
+
+[node name="Path" type="Line2D" parent="EnemyManager"]
+points = PoolVector2Array( 704, 117, 386, 111, 193, 363, 120, 275, 65, 406 )
+width = 0.0
+
+[connection signal="targetReached" from="EnemyManager/Enemy" to="EnemyManager" method="_on_Enemy_targetReached"]

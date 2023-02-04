@@ -25,7 +25,6 @@ var active = true
 var moving = true
 var water = 2000
 
-
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
 var speedModifier = 1
@@ -74,7 +73,7 @@ func _process(delta):
 func _physics_process(delta):
 	if active and moving:
 		speedModifier = Utils.Floor.getTileSpeedMod(position)
-		print(speedModifier)
+		#print(speedModifier)
 		#print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
@@ -85,7 +84,7 @@ func _physics_process(delta):
 			water -= velocity.length()
 			
 		progBar.value = water
-		print("Water level: " + str(water))
+		#print("Water level: " + str(water))
 		
 	elif active and not moving:
 		if Input.is_action_pressed("ui_down"):

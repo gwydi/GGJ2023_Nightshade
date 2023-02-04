@@ -66,5 +66,11 @@ margin_top = 23.0
 margin_right = 51.0
 margin_bottom = 37.0
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -52.0
+margin_top = 23.0
+margin_right = 51.0
+margin_bottom = 37.0
+
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

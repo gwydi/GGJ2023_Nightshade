@@ -11,9 +11,9 @@ onready var testLine = $TestLine
 onready var rootHead = $RootHead
 onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
 onready var winRect = $WinRect
+onready var progBar = $ProgressBar
 onready var detectionArea = $DetectionArea
 onready var detectionAreaGen = $DetectionAreaGen
-onready var progBar = $ProgressBar
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -27,7 +27,6 @@ var active = true
 var moving = true
 var water = 2000
 
-
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
 var speedModifier = 1
@@ -39,10 +38,10 @@ func _ready():
 	print("started")
 	Utils.connect_player(self)
 	velocity = Vector2(randf() -0.5, randf() - 0.5).normalized()
-	
+
 	testLine.points.empty()
 	testLine.global_position -= global_position
-	
+
 	progBar.max_value = water
 	progBar.value = water
 
@@ -58,7 +57,7 @@ func _process(delta):
 		
 		if water <= 0:
 			emit_signal("player_died_soft")
-		
+
 		timer -= delta
 		
 		if Input.is_action_pressed("ui_down"):
@@ -66,7 +65,7 @@ func _process(delta):
 			moving = false
 		else:
 			moving = true
-			chargeTimer = clamp(chargeTimer - delta * 7,0,2000) 
+			chargeTimer = clamp(chargeTimer - delta * 7,0,2000)
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -77,7 +76,7 @@ func _process(delta):
 func _physics_process(delta):
 	if active and moving:
 		speedModifier = Utils.Floor.getTileSpeedMod(position)
-		print(speedModifier)
+		#print(speedModifier)
 		#print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
@@ -86,14 +85,14 @@ func _physics_process(delta):
 			water -= velocity.length() * (chargeTimer + 1)
 		else:
 			water -= velocity.length()
-			
+
 		progBar.value = water
-		print("Water level: " + str(water))
-		
+		#print("Water level: " + str(water))
+
 	elif active and not moving:
 		if Input.is_action_pressed("ui_down"):
 			water -= velocity.length() * (chargeTimer + 1)
-			
+
 		progBar.value = water
 
 func reset_checkpoint(var playerInstance):
@@ -130,11 +129,11 @@ func _on_DetectionArea_area_entered(area):
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
 	detectionAreaGen.position = to_local(Vector2.ZERO)
-	
+
 	# remove old colliders
 	for oldCol in detectionAreaGen.get_children():
 		detectionAreaGen.remove_child(oldCol)
-		
+
 	# add new colliders
 	for poly in line_poly:
 		var col = CollisionPolygon2D.new()

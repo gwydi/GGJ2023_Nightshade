@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=12 format=2]
+=======
+[gd_scene load_steps=13 format=2]
+>>>>>>> 8ad56436a4d21b84ee7839fd314a4b29d750637a
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://FloorTilemap.gd" type="Script" id=2]
@@ -8,6 +12,10 @@
 [ext_resource path="res://Sprites/Brick_Tilemap.png" type="Texture" id=6]
 [ext_resource path="res://Objects/Pot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=8]
+<<<<<<< HEAD
+=======
+[ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=9]
+>>>>>>> 8ad56436a4d21b84ee7839fd314a4b29d750637a
 
 [sub_resource type="TileSet" id=4]
 resource_local_to_scene = true
@@ -149,12 +157,32 @@ tile_data = PoolIntArray( -327691, 0, 0, -327690, 0, 0, -327689, 0, 0, -327688, 
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+<<<<<<< HEAD
 position = Vector2( -49, 207 )
+=======
+position = Vector2( 637, 625 )
+
+[node name="Manhole" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1450, 476 )
+>>>>>>> 8ad56436a4d21b84ee7839fd314a4b29d750637a
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 540 )
 current = true
+<<<<<<< HEAD
 zoom = Vector2( 2, 2 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
 position = Vector2( 53, -1040 )
+=======
+zoom = Vector2( 1.25, 1.25 )
+
+[node name="EnemyManager" parent="." instance=ExtResource( 8 )]
+position = Vector2( 53, -1040 )
+initialWaitTime = 5
+
+[node name="Path" parent="EnemyManager" index="2"]
+points = PoolVector2Array( 109, 551, 161, 993, 474, 1154, 496, 1360, 194, 1654, 474, 1943, 827, 1784, 991, 1975, 1276, 1995, 1599, 1986, 1804, 1772, 1881, 1451, 1800, 1263, 1588, 1112, 1269, 949, 947, 1002, 637, 1071, 508, 1244, 714, 1475, 840, 1594, 866, 1883, 1020, 1926, 1500, 1920, 1779, 1943, 2105, 2080, 2808, 2063, 3063, 2048 )
+
+[editable path="EnemyManager"]
+>>>>>>> 8ad56436a4d21b84ee7839fd314a4b29d750637a

@@ -5,13 +5,15 @@ extends StaticBody2D
 # var a = 2
 # var b = "text"
 
-onready var deadBranchTex = preload("res://icon.png")
+onready var corruptTex = preload("res://Sprites/Plant1_C.png")
+onready var sprite = $Sprite
 
 var connected = false
 var potPointID = null
 
 func connect_pot(var id: int):
 	potPointID = id
+	sprite.texture = corruptTex
 
 func update_pot(var id: int):
-	potPointID = id
+	connect_pot(id)

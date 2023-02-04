@@ -11,6 +11,7 @@ export(Dictionary) var speedMods = {
 	8: 3,
 	9: 3,
 	10: 1,
+	22: 3,
 }
 
 onready var tilemap = $TileMap

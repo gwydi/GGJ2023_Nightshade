@@ -1,23 +1,247 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Test_R/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Test_R/Pot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Pot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
+[ext_resource path="res://Stone_Tilemap.png" type="Texture" id=5]
+[ext_resource path="res://tilemap.png" type="Texture" id=6]
+[ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=7]
+
+[sub_resource type="TileSet" id=1]
+resource_local_to_scene = true
+10/name = "tilemap.png 10"
+10/texture = ExtResource( 6 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 0, 0, 400, 400 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "Stone_Tilemap.png 11"
+11/texture = ExtResource( 5 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 400, 800, 400, 400 )
+11/tile_mode = 1
+11/autotile/bitmask_mode = 1
+11/autotile/bitmask_flags = [ Vector2( 0, 1 ), 292, Vector2( 0, 2 ), 4, Vector2( 1, 1 ), 511, Vector2( 2, 0 ), 448, Vector2( 2, 1 ), 511, Vector2( 2, 2 ), 7, Vector2( 3, 0 ), 64, Vector2( 3, 1 ), 73, Vector2( 3, 2 ), 1 ]
+11/autotile/icon_coordinate = Vector2( 0, 0 )
+11/autotile/tile_size = Vector2( 400, 400 )
+11/autotile/spacing = 0
+11/autotile/occluder_map = [  ]
+11/autotile/navpoly_map = [  ]
+11/autotile/priority_map = [  ]
+11/autotile/z_index_map = [  ]
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
+12/name = "Stone_Tilemap.png 12"
+12/texture = ExtResource( 5 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 0, 0, 400, 400 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "Stone_Tilemap.png 13"
+13/texture = ExtResource( 5 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 400, 400, 400 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+14/name = "Stone_Tilemap.png 14"
+14/texture = ExtResource( 5 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 800, 400, 400 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape_one_way = false
+14/shape_one_way_margin = 0.0
+14/shapes = [  ]
+14/z_index = 0
+15/name = "Stone_Tilemap.png 15"
+15/texture = ExtResource( 5 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 400, 400, 400, 400 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+16/name = "Stone_Tilemap.png 16"
+16/texture = ExtResource( 5 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 800, 0, 400, 400 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape_one_way = false
+16/shape_one_way_margin = 0.0
+16/shapes = [  ]
+16/z_index = 0
+17/name = "Stone_Tilemap.png 17"
+17/texture = ExtResource( 5 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 400, 0, 400, 400 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 0, 0 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+17/shape_one_way = false
+17/shape_one_way_margin = 0.0
+17/shapes = [  ]
+17/z_index = 0
+18/name = "Stone_Tilemap.png 18"
+18/texture = ExtResource( 5 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 800, 800, 400, 400 )
+18/tile_mode = 0
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
+19/name = "Stone_Tilemap.png 19"
+19/texture = ExtResource( 5 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 1200, 0, 400, 400 )
+19/tile_mode = 0
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
+20/name = "Stone_Tilemap.png 20"
+20/texture = ExtResource( 5 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 1200, 400, 400, 400 )
+20/tile_mode = 0
+20/occluder_offset = Vector2( 0, 0 )
+20/navigation_offset = Vector2( 0, 0 )
+20/shape_offset = Vector2( 0, 0 )
+20/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+20/shape_one_way = false
+20/shape_one_way_margin = 0.0
+20/shapes = [  ]
+20/z_index = 0
+21/name = "Stone_Tilemap.png 21"
+21/texture = ExtResource( 5 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 1200, 800, 400, 400 )
+21/tile_mode = 0
+21/occluder_offset = Vector2( 0, 0 )
+21/navigation_offset = Vector2( 0, 0 )
+21/shape_offset = Vector2( 0, 0 )
+21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+21/shape_one_way = false
+21/shape_one_way_margin = 0.0
+21/shapes = [  ]
+21/z_index = 0
+22/name = "Stone_Tilemap.png 22"
+22/texture = ExtResource( 5 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 0, 0, 1600, 1200 )
+22/tile_mode = 1
+22/autotile/bitmask_mode = 0
+22/autotile/bitmask_flags = [ Vector2( 0, 0 ), 256, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 4, Vector2( 1, 1 ), 325, Vector2( 2, 0 ), 320, Vector2( 2, 1 ), 325, Vector2( 2, 2 ), 5, Vector2( 3, 0 ), 64, Vector2( 3, 1 ), 65, Vector2( 3, 2 ), 1 ]
+22/autotile/icon_coordinate = Vector2( 0, 0 )
+22/autotile/tile_size = Vector2( 400, 400 )
+22/autotile/spacing = 0
+22/autotile/occluder_map = [  ]
+22/autotile/navpoly_map = [  ]
+22/autotile/priority_map = [  ]
+22/autotile/z_index_map = [  ]
+22/occluder_offset = Vector2( 0, 0 )
+22/navigation_offset = Vector2( 0, 0 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+22/shape_one_way = false
+22/shape_one_way_margin = 0.0
+22/shapes = [  ]
+22/z_index = 0
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="Floor" parent="." instance=ExtResource( 1 )]
 
-[node name="Pot" parent="Floor" instance=ExtResource( 3 )]
-position = Vector2( 2090, 847 )
-
-[node name="Pot2" parent="Floor" instance=ExtResource( 3 )]
-position = Vector2( 966, 1232 )
+[node name="TileMap" parent="Floor" index="0"]
+tile_set = SubResource( 1 )
+tile_data = PoolIntArray( 0, 22, 0, 1, 22, 2, 2, 22, 2, 3, 22, 3, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 2, 0, 14, 22, 0, 15, 22, 2, 16, 22, 2, 17, 22, 2, 18, 22, 3, 65536, 22, 65536, 65537, 22, 65537, 65538, 22, 65538, 65539, 22, 65539, 65540, 4, 0, 65541, 4, 0, 65542, 22, 0, 65543, 22, 2, 65544, 22, 2, 65545, 22, 2, 65546, 22, 2, 65547, 22, 3, 65550, 22, 65536, 65551, 22, 65538, 65552, 22, 65537, 65553, 22, 65538, 65554, 22, 65539, 65558, 15, 0, 131072, 22, 65536, 131073, 22, 65538, 131074, 22, 65537, 131075, 22, 65539, 131077, 4, 0, 131078, 22, 65536, 131079, 22, 65538, 131080, 22, 65538, 131081, 22, 65538, 131082, 22, 65537, 131083, 22, 65539, 131086, 22, 65536, 131087, 22, 65537, 131088, 22, 65537, 131089, 22, 65538, 131090, 22, 65539, 196608, 22, 65536, 196609, 22, 65538, 196610, 22, 65537, 196611, 22, 65539, 196614, 22, 131072, 196615, 22, 131074, 196616, 22, 131074, 196617, 22, 131074, 196618, 22, 131074, 196619, 22, 131075, 196622, 22, 65536, 196623, 22, 65537, 196624, 22, 65537, 196625, 22, 65537, 196626, 22, 65539, 262144, 22, 65536, 262145, 22, 65538, 262146, 22, 65537, 262147, 22, 65539, 262158, 22, 65536, 262159, 22, 65537, 262160, 22, 65538, 262161, 22, 65537, 262162, 22, 65539, 327680, 22, 65536, 327681, 22, 65537, 327682, 22, 65538, 327683, 22, 65539, 327685, 22, 0, 327686, 22, 2, 327687, 22, 2, 327688, 22, 2, 327689, 22, 2, 327690, 22, 2, 327691, 22, 2, 327692, 22, 3, 327694, 22, 65536, 327695, 22, 65538, 327696, 22, 65537, 327697, 22, 65538, 327698, 22, 65539, 393216, 22, 65536, 393217, 22, 65538, 393218, 22, 65537, 393219, 22, 65539, 393221, 22, 65536, 393222, 22, 65538, 393223, 22, 65537, 393224, 22, 65537, 393225, 22, 65537, 393226, 22, 65538, 393227, 22, 65537, 393228, 22, 65539, 393229, 17, 0, 393230, 22, 65536, 393231, 22, 65538, 393232, 22, 65538, 393233, 22, 65537, 393234, 22, 65539, 458752, 22, 65536, 458753, 22, 65537, 458754, 22, 65538, 458755, 22, 65539, 458757, 22, 65536, 458758, 22, 65538, 458759, 22, 65537, 458760, 22, 65537, 458761, 22, 65537, 458762, 22, 65537, 458763, 22, 65537, 458764, 22, 65539, 458765, 17, 0, 458766, 22, 65536, 458767, 22, 65538, 458768, 22, 65537, 458769, 22, 65538, 458770, 22, 65539, 524288, 22, 65536, 524289, 22, 65537, 524290, 22, 65537, 524291, 22, 65539, 524293, 22, 65536, 524294, 22, 65538, 524295, 22, 65538, 524296, 22, 65538, 524297, 22, 65538, 524298, 22, 65538, 524299, 22, 65538, 524300, 22, 65539, 524302, 22, 65536, 524303, 22, 65538, 524304, 22, 65538, 524305, 22, 65537, 524306, 22, 65539, 589824, 22, 65536, 589825, 22, 65537, 589826, 22, 65537, 589827, 22, 65539, 589829, 22, 65536, 589830, 22, 65537, 589831, 22, 65537, 589832, 22, 65538, 589833, 22, 65537, 589834, 22, 65538, 589835, 22, 65537, 589836, 22, 65539, 589837, 17, 0, 589838, 22, 65536, 589839, 22, 65537, 589840, 22, 65538, 589841, 22, 65537, 589842, 22, 65539, 655360, 22, 65536, 655361, 22, 65537, 655362, 22, 65537, 655363, 22, 65539, 655365, 22, 65536, 655366, 22, 65538, 655367, 22, 65537, 655368, 22, 65538, 655369, 22, 65538, 655370, 22, 65537, 655371, 22, 65538, 655372, 22, 65539, 655374, 22, 131072, 655375, 22, 131074, 655376, 22, 131074, 655377, 22, 131074, 655378, 22, 131075, 720896, 22, 65536, 720897, 22, 65537, 720898, 22, 65537, 720899, 22, 65539, 720901, 22, 65536, 720902, 22, 65537, 720903, 22, 65538, 720904, 22, 65537, 720905, 22, 65537, 720906, 22, 65537, 720907, 22, 65537, 720908, 22, 65539, 786432, 22, 65536, 786433, 22, 65537, 786434, 22, 65538, 786435, 22, 65539, 786437, 22, 131072, 786438, 22, 131074, 786439, 22, 131074, 786440, 22, 131074, 786441, 22, 131074, 786442, 22, 131074, 786443, 22, 131074, 786444, 22, 131075, 851968, 22, 131072, 851969, 22, 131074, 851970, 22, 131074, 851971, 22, 131075, 1179649, 22, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 surviveSeconds = 100000.0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Pot" parent="." instance=ExtResource( 3 )]
+position = Vector2( 196, 169 )
+
+[node name="Pot2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1658, 885 )
+
+[node name="Pot3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 205, 701 )
+
+[node name="Pot4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 899, 945 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 988, 570 )
 current = true
+zoom = Vector2( 2, 2 )
+
+[node name="Manhole" parent="." instance=ExtResource( 7 )]
+position = Vector2( 850, 250 )
+scale = Vector2( 0.25, 0.25 )
+
+[editable path="Floor"]

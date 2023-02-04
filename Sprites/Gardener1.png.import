@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tilemap.png-838486f2ee5f5764f6a08fbb86e9df3c.stex"
+path="res://.import/Gardener1.png-ceb17a0001142d837321b9f98d7d34af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilemap.png"
-dest_files=[ "res://.import/tilemap.png-838486f2ee5f5764f6a08fbb86e9df3c.stex" ]
+source_file="res://Sprites/Gardener1.png"
+dest_files=[ "res://.import/Gardener1.png-ceb17a0001142d837321b9f98d7d34af.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

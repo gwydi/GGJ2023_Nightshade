@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Root1.png-2cdbd76b9fdb414fb02fdda94e709b4c.stex"
+path="res://.import/Plant1_C.png-2ebe287dc2073597ba928c1a43925b3f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Test_R/Root1.png"
-dest_files=[ "res://.import/Root1.png-2cdbd76b9fdb414fb02fdda94e709b4c.stex" ]
+source_file="res://Sprites/Plant1_C.png"
+dest_files=[ "res://.import/Plant1_C.png-2ebe287dc2073597ba928c1a43925b3f.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

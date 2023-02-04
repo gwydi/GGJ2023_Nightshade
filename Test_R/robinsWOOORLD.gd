@@ -7,7 +7,7 @@ extends Node2D
 
 onready var player = $Player
 
-onready var playerScene = preload("res://Test_R/Player.tscn")
+onready var playerScene = preload("res://Player/Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

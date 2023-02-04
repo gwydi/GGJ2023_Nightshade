@@ -10,8 +10,10 @@ export(float) var surviveSeconds = 10
 
 onready var testLine = $TestLine
 onready var rootHead = $RootHead
+onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
+onready var winRect = $WinRect
 
-var velocity: Vector2 = Vector2(1,0) 
+var velocity: Vector2 = Vector2(0.5,0) 
 
 var timer = 0
 var points = 0
@@ -23,6 +25,8 @@ var active = true
 var moving = true
 var surviveTimer = surviveSeconds
 
+
+
 var preChargeVelocity = Vector2.ZERO
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
@@ -33,6 +37,7 @@ signal player_died_soft
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("started")
+	velocity = Vector2(randf() -0.5, randf() - 0.5)
 	surviveTimer = surviveSeconds
 	testLine.points.empty()
 	testLine.global_position -= global_position
@@ -43,7 +48,7 @@ func _process(delta):
 	if active:
 		if timer <= 0:
 			timer = pointInterval
-			testLine.add_point(global_position)
+			testLine.add_point(rootAnkPun.global_position)
 			points += 1
 		
 		if surviveTimer <= 0:
@@ -69,8 +74,7 @@ func _process(delta):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
 		elif Input.is_action_pressed("ui_right"):
 			velocity = velocity.rotated(ROTATION_SPEED * delta)
-		rootHead.look_at(global_position + velocity) 
-		rootHead.rotation_degrees += 90
+		rootHead.look_at(global_position + velocity * 100) 
 
 func _physics_process(delta):
 	if active and moving:
@@ -105,3 +109,8 @@ func _on_DetectionArea_body_entered(body):
 			print("Connected Root to Pot with ID: " + str(testLine.points.size()))
 		else:
 			body.update_pot(testLine.points.size())
+
+
+func _on_DetectionArea_area_entered(area):
+	if area.is_in_group("Manhole"):
+		winRect.visible = true

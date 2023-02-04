@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/Root1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/RootHead.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 47.5, 18 )
+
+[node name="Player" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+pointInterval = 0.05
+ROTATION_SPEED = 2.0
+
+[node name="TestLine" type="Line2D" parent="."]
+width = 40.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 1
+
+[node name="RootHead" type="Sprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
+
+[node name="RootAnkuppelPunkt" type="Position2D" parent="RootHead"]
+position = Vector2( -400, 0 )
+scale = Vector2( 20, 20 )
+
+[node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2( 1, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RootCollision" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2( -2.5, 0 )
+shape = SubResource( 1 )
+
+[node name="WinRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 853.0
+margin_bottom = 482.0
+
+[node name="Label" type="Label" parent="WinRect"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -426.5
+margin_right = 426.5
+margin_bottom = 482.0
+rect_scale = Vector2( 10, 10 )
+text = "YOU WIN!"
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

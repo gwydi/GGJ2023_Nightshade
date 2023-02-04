@@ -33,3 +33,10 @@ func setTarget(target: Vector2):
 	
 	steps = route.length()
 	walking = true
+
+func _on_Area2D_area_entered(area):
+	var isPlayer = area.is_in_group("Player")
+	print("enemy entered ")
+	if (isPlayer):
+		print("player")
+		area.get_parent().emit_signal("player_died_soft")

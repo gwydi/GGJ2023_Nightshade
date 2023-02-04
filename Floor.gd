@@ -32,7 +32,7 @@ func _ready():
 
 
 func getSpeedModifier(worldPosition :Vector2):
-	print("inc Position: " + str(worldPosition))
+	#("inc Position: " + str(worldPosition))
 	if (tilemap != null):
 		return tilemap.getModifier(worldPosition)
 	return 1

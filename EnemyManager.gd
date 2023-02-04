@@ -13,7 +13,7 @@ func _ready():
 	timer = $Timer
 	points = $Path.points
 	_reset_position()
-	timer.wait_time = waitTime
+	timer.wait_time = initialWaitTime
 	timer.start()
 	
 func _reset_position():

@@ -4,7 +4,8 @@ var poolPosition = Vector2(-1000, -1000)
 var points
 var enemyInstance 
 var timer :Timer
-var waitTime = 5
+export var waitTime = 10
+export var initialWaitTime = 2
 var currentPointIndex = 0
 
 func _ready():

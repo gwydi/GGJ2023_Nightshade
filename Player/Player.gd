@@ -1,6 +1,8 @@
 extends Node2D
 
-
+enum playerStates{
+	DEACTIVATED, MOVING, HOLDING, CHARGING
+}
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -23,13 +25,13 @@ var points = 0
 var startLocation = Vector2(0,0)
 var connectedPots = []
 
-var active = true
-var moving = true
 var water = 2000
 
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
 var speedModifier = 1
+
+var STATE = playerStates.MOVING
 
 signal player_died_soft
 
@@ -48,7 +50,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if active:
+	if STATE != playerStates.DEACTIVATED:
 		if timer <= 0:
 			timer = pointInterval
 			testLine.add_point(rootAnkPun.global_position)
@@ -60,12 +62,20 @@ func _process(delta):
 
 		timer -= delta
 		
-		if Input.is_action_pressed("ui_down"):
-			chargeTimer += delta * 10
-			moving = false
+		if Input.is_action_pressed("ui_down") and STATE != playerStates.CHARGING:
+			chargeTimer += delta
+			STATE = playerStates.HOLDING
+			if chargeTimer >= chargeMAXThreshhold:
+				STATE = playerStates.CHARGING
+			print("Player holding charge")
+			print(chargeTimer)
 		else:
-			moving = true
-			chargeTimer = clamp(chargeTimer - delta * 7,0,2000)
+			chargeTimer = clamp(chargeTimer - delta * 2,0,2000)
+			if chargeTimer > 0:
+				STATE = playerStates.CHARGING
+				print("Player Charging")
+			else:
+				STATE = playerStates.MOVING
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -74,30 +84,30 @@ func _process(delta):
 		rootHead.look_at(global_position + velocity * 100) 
 
 func _physics_process(delta):
-	if active and moving:
+	if STATE == playerStates.MOVING or STATE == playerStates.CHARGING:
 		speedModifier = Utils.Floor.getTileSpeedMod(position)
 		#print(speedModifier)
 		#print("speedmod" + str(speedModifier))
-		global_position += velocity * (chargeTimer + 1) * speedModifier
-		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
+		global_position += velocity * (chargeTimer * 3 + 1) * speedModifier
+		testLine.global_position -= velocity * (chargeTimer * 3 + 1) * speedModifier
 		
 		if chargeTimer > 0:
 			water -= velocity.length() * (chargeTimer + 1)
 		else:
 			water -= velocity.length()
-
 		progBar.value = water
 		#print("Water level: " + str(water))
-
-	elif active and not moving:
+		
+	elif STATE == playerStates.HOLDING:
 		if Input.is_action_pressed("ui_down"):
 			water -= velocity.length() * (chargeTimer + 1)
-
+		
 		progBar.value = water
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance
-	active = false
+	STATE = playerStates.DEACTIVATED
+	print("Player Deactivated")
 	
 	#Reset player position to last pot or starting point
 	if connectedPots.size() >= 1:
@@ -121,7 +131,6 @@ func _on_DetectionArea_body_entered(body):
 		else:
 			body.update_pot(testLine.points.size())
 
-
 func _on_DetectionArea_area_entered(area):
 	if area.is_in_group("Manhole"):
 		winRect.visible = true
@@ -140,4 +149,3 @@ func _calculateCollision():
 		col.set_build_mode(1)
 		col.polygon = poly
 		detectionAreaGen.add_child(col)
-

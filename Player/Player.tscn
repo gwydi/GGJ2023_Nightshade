@@ -4,8 +4,8 @@
 [ext_resource path="res://Player/Root1.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/RootHead.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 23.5
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25, 10 )
 
 [node name="Player" type="Node2D"]
 z_index = 5
@@ -15,13 +15,13 @@ pointInterval = 0.05
 ROTATION_SPEED = 2.0
 
 [node name="TestLine" type="Line2D" parent="."]
-width = 40.0
+width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 1
 
 [node name="RootHead" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 3 )
 
 [node name="RootAnkuppelPunkt" type="Position2D" parent="RootHead"]
@@ -41,7 +41,7 @@ __meta__ = {
 }
 
 [node name="RootCollision" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( -12.5, -1 )
+position = Vector2( -1, 0 )
 shape = SubResource( 1 )
 
 [node name="WinRect" type="ColorRect" parent="."]
@@ -58,12 +58,6 @@ margin_right = 426.5
 margin_bottom = 482.0
 rect_scale = Vector2( 10, 10 )
 text = "YOU WIN!"
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = -52.0
-margin_top = 23.0
-margin_right = 51.0
-margin_bottom = 37.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_left = -52.0

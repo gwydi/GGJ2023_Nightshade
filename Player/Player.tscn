@@ -29,6 +29,12 @@ texture = ExtResource( 3 )
 position = Vector2( -400, 0 )
 scale = Vector2( 20, 20 )
 
+[node name="DetectionAreaGen" type="Area2D" parent="." groups=["Player"]]
+position = Vector2( 1, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="DetectionArea" type="Area2D" parent="." groups=["Player"]]
 position = Vector2( 1, 0 )
 __meta__ = {
@@ -54,5 +60,7 @@ margin_bottom = 482.0
 rect_scale = Vector2( 10, 10 )
 text = "YOU WIN!"
 
+[connection signal="area_entered" from="DetectionAreaGen" to="." method="_on_DetectionArea_area_entered"]
+[connection signal="body_entered" from="DetectionAreaGen" to="." method="_on_DetectionArea_body_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]

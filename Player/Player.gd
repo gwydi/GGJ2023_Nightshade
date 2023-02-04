@@ -12,6 +12,8 @@ onready var testLine = $TestLine
 onready var rootHead = $RootHead
 onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
 onready var winRect = $WinRect
+onready var detectionArea = $DetectionArea
+onready var detectionAreaGen = $DetectionAreaGen
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -49,6 +51,7 @@ func _process(delta):
 		if timer <= 0:
 			timer = pointInterval
 			testLine.add_point(rootAnkPun.global_position)
+			_calculateCollision()
 			points += 1
 		
 		if surviveTimer <= 0:
@@ -79,7 +82,7 @@ func _process(delta):
 func _physics_process(delta):
 	if active and moving:
 		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
-		print("speedmod" + str(speedModifier))
+#		print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
 		
@@ -114,3 +117,19 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_area_entered(area):
 	if area.is_in_group("Manhole"):
 		winRect.visible = true
+
+func _calculateCollision():
+	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
+	detectionAreaGen.position = to_local(Vector2.ZERO)
+	
+	# remove old colliders
+	for oldCol in detectionAreaGen.get_children():
+		detectionAreaGen.remove_child(oldCol)
+		
+	# add new colliders
+	for poly in line_poly:
+		var col = CollisionPolygon2D.new()
+		col.set_build_mode(1)
+		col.polygon = poly
+		detectionAreaGen.add_child(col)
+

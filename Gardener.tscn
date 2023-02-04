@@ -11,8 +11,14 @@ script = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 position = Vector2( 69.4738, -164.211 )
 polygon = PoolVector2Array( -195.79, 50.5264, -1717.9, 2652.64, 1402.11, 2665.27, 82.1054, 44.2106 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = -1
+color = Color( 0.631373, 0.113725, 0.219608, 0.423529 )
+polygon = PoolVector2Array( 1427.37, 2482.11, 1289.11, 2520.01, -1496.12, 2520.01, -1597.9, 2475.79, -1586.79, 2348.8, -107.369, -44.2106, 120, -37.8948, 1424.84, 2331.88 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

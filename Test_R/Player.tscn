@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Test_R/testSnake.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Test_R/rootOrSmth.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 31 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+pointInterval = 0.3
+ROTATION_SPEED = 2.0
+
+[node name="TestLine" type="Line2D" parent="."]
+width = 20.0
+texture = ExtResource( 3 )
+texture_mode = 1
+
+[node name="RootHead" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.5, 1 )
+texture = ExtResource( 2 )
+
+[node name="RootCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -22,6 +22,8 @@ var connectedPots = []
 var active = true
 var surviveTimer = surviveSeconds
 
+var speedModifier = 1
+
 signal player_died_soft
 
 # Called when the node enters the scene tree for the first time.
@@ -52,13 +54,15 @@ func _process(delta):
 		rootHead.look_at(global_position + velocity) 
 		rootHead.rotation_degrees += 90
 		
+		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
+		
 		
 	#print(velocity)
 
 func _physics_process(delta):
 	if active:
-		global_position += velocity
-		testLine.global_position -= velocity
+		global_position += velocity * speedModifier
+		testLine.global_position -= velocity * speedModifier
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance

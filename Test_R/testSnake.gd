@@ -33,6 +33,7 @@ signal player_died_soft
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("started")
+	surviveTimer = surviveSeconds
 	testLine.points.empty()
 	testLine.global_position -= global_position
 
@@ -52,16 +53,17 @@ func _process(delta):
 		timer -= delta
 		
 		if Input.is_action_pressed("ui_down"):
-			chargeTimer += delta * 5
+			chargeTimer += delta * 10
 			moving = false
 			preChargeVelocity = velocity.normalized() # normalized so its always a clean direction and cant accidentaly be stacked
 		else:
 			moving = true
-			chargeTimer = clamp(chargeTimer - delta,0,2000) 
+			chargeTimer = clamp(chargeTimer - delta*5,0,2000) 
 		
 		
-		print(chargeTimer)
-		print(velocity)
+		#print(chargeTimer)
+		#print("vel" + str(velocity))
+		#print("vel length" + str(velocity.length()))
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -72,9 +74,10 @@ func _process(delta):
 
 func _physics_process(delta):
 	if active and moving:
+		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
+		print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
-		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
 		
 
 func reset_checkpoint(var playerInstance):

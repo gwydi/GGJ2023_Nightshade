@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Test_R/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Test_R/Pot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World.gd" type="Script" id=4]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+position = Vector2( -811, -652 )
+
+[node name="Pot" parent="Floor" instance=ExtResource( 3 )]
+position = Vector2( 2090, 847 )
+
+[node name="Pot2" parent="Floor" instance=ExtResource( 3 )]
+position = Vector2( 966, 1232 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -743, -507 )
+surviveSeconds = 100000.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 743, 507 )
+current = true

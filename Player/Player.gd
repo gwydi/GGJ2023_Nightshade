@@ -6,12 +6,12 @@ extends Node2D
 # var b = "text"
 export(float) var pointInterval = 0.5
 export(float) var ROTATION_SPEED
-export(float) var surviveSeconds = 10
 
 onready var testLine = $TestLine
 onready var rootHead = $RootHead
 onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
 onready var winRect = $WinRect
+onready var progBar = $ProgressBar
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -23,11 +23,9 @@ var connectedPots = []
 
 var active = true
 var moving = true
-var surviveTimer = surviveSeconds
+var water = 3000
 
 
-
-var preChargeVelocity = Vector2.ZERO
 var chargeTimer = 0
 var chargeMAXThreshhold = 3
 var speedModifier = 1
@@ -38,9 +36,12 @@ signal player_died_soft
 func _ready():
 	print("started")
 	velocity = Vector2(randf() -0.5, randf() - 0.5).normalized()
-	surviveTimer = surviveSeconds
+	
 	testLine.points.empty()
 	testLine.global_position -= global_position
+	
+	progBar.max_value = water
+	progBar.value = water
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,24 +52,17 @@ func _process(delta):
 			testLine.add_point(rootAnkPun.global_position)
 			points += 1
 		
-		if surviveTimer <= 0:
+		if water <= 0:
 			emit_signal("player_died_soft")
 		
-		surviveTimer -= delta
 		timer -= delta
 		
 		if Input.is_action_pressed("ui_down"):
 			chargeTimer += delta * 10
 			moving = false
-			preChargeVelocity = velocity.normalized() # normalized so its always a clean direction and cant accidentaly be stacked
 		else:
 			moving = true
 			chargeTimer = clamp(chargeTimer - delta * 10,0,2000) 
-		
-		
-		#print(chargeTimer)
-		#print("vel" + str(velocity))
-		#print("vel length" + str(velocity.length()))
 		
 		if Input.is_action_pressed("ui_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
@@ -78,11 +72,25 @@ func _process(delta):
 
 func _physics_process(delta):
 	if active and moving:
-		speedModifier = get_parent().get_node("Floor").getSpeedModifier(position)
-		print("speedmod" + str(speedModifier))
+		speedModifier = get_parent().get_node("Floor").getTileSpeedMod(position)
+		print(speedModifier)
+		#print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer + 1) * speedModifier
 		
+		if chargeTimer > 0:
+			water -= velocity.length() * (chargeTimer + 1)
+		else:
+			water -= velocity.length()
+			
+		progBar.value = water
+		print("Water level: " + str(water))
+		
+	elif active and not moving:
+		if Input.is_action_pressed("ui_down"):
+			water -= velocity.length() * (chargeTimer + 1) * 2
+			
+		progBar.value = water
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance

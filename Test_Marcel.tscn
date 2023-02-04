@@ -12,7 +12,4 @@
 
 [node name="EnemyManager" parent="." instance=ExtResource( 3 )]
 
-[node name="Path" parent="EnemyManager" index="2"]
-points = PoolVector2Array( 1330, 162, 894, 335, 527, 176, 341, 357, 186, 394 )
-
 [editable path="EnemyManager"]

@@ -26,9 +26,6 @@ func reset_player():
 func connect_player(var Player):
 	if player == null:
 		player = Player
-<<<<<<< HEAD
-=======
 		player.connect("player_died_soft", self, "reset_player")
->>>>>>> 8ad56436a4d21b84ee7839fd314a4b29d750637a
 	else:
 		nextPlayer = Player

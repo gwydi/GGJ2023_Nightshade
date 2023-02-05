@@ -26,7 +26,7 @@ var points = 0
 var startLocation = Vector2(0,0)
 var connectedPots = []
 
-var maxWater = 2000
+var maxWater = 500
 var water = maxWater
 
 var chargeTimer = 0
@@ -108,9 +108,9 @@ func update_water(var newValue):
 	#print(water)
 	var waterpercent : float = water / maxWater 
 	rootHead.modulate = Color(1,1,1, waterpercent)
-	testLine.modulate = Color(1,1,1, clamp(waterpercent,0.2,1))
+	testLine.modulate = Color(1,1,1, clamp(waterpercent,0,1))
 	deadHead.modulate = Color(1,1,1, -waterpercent + 1)
-	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,0.8))
+	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,1))
 	#print(str(testLine.modulate.a) + " ::: " + str(deadRoot.modulate.a) + " ::: " + str(water))
 	
 	if water <= 0:
@@ -138,10 +138,10 @@ func reset_checkpoint(var playerInstance):
 
 func _on_DetectionArea_body_entered(body):
 	if body.is_in_group("RootNode"):
+		update_water(maxWater)
 		if not connectedPots.has(body):
 			body.connect_pot(testLine.points.size())
 			connectedPots.append(body)
-			water = maxWater
 			print("Connected Root to Pot with ID: " + str(testLine.points.size()))
 		else:
 			body.update_pot(testLine.points.size())

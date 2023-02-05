@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GGJ2023_Nightshade"
-run/main_scene="res://World.tscn"
+run/main_scene="res://MenuScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -41,6 +41,7 @@ version_control_plugin_name="GitAPI"
 [global]
 
 input=false
+scene=false
 
 [gui]
 

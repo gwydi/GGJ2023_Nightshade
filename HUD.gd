@@ -6,7 +6,6 @@ const hpFull = preload("res://HpFull.tscn")
 func _ready():
 	Utils.connect_hud(self)
 
-
 func _process(delta):
 	var playerWater = Utils.player.water
 	var playerMaxWater = Utils.player.maxWater

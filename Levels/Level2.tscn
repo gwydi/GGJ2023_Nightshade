@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Sprites/Counter2.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Shovel.png" type="Texture" id=15]
 [ext_resource path="res://Objects/LevelCam.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/LevelScript.gd" type="Script" id=17]
 
 [sub_resource type="TileSet" id=23]
 0/name = "Wall_Full.png 0"
@@ -144,6 +145,8 @@ resource_local_to_scene = true
 0/z_index = 0
 
 [node name="Level1" type="Node2D"]
+script = ExtResource( 17 )
+nextLevel = "res://Levels/Level2.tscn"
 
 [node name="Pot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 167, 692 )

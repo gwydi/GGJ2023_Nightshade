@@ -23,6 +23,7 @@ width = 40.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
 texture_mode = 1
+joint_mode = 1
 
 [node name="RootHead" type="Sprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -39,6 +40,7 @@ width = 40.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 6 )
 texture_mode = 1
+joint_mode = 1
 
 [node name="DeadHead" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )

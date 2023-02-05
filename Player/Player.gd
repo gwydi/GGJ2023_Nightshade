@@ -35,6 +35,10 @@ var speedModifier = 1
 
 var STATE = playerStates.MOVING
 
+var pulsateInterval = 0.2
+var pulsateMeasurer = pulsateInterval
+var pulsatingCurve
+
 signal player_died_soft
 
 # Called when the node enters the scene tree for the first time.
@@ -46,6 +50,10 @@ func _ready():
 	testLine.points.empty()
 	testLine.global_position -= global_position
 	deadRoot.global_position -= global_position
+	
+	pulsatingCurve = _constructWiggleCurve()
+	testLine.width_curve = pulsatingCurve
+	deadRoot.width_curve = pulsatingCurve
 
 
 
@@ -56,10 +64,16 @@ func _process(delta):
 			timer = pointInterval
 			testLine.add_point(rootAnkPun.global_position)
 			deadRoot.add_point(rootAnkPun.global_position)
-			_calculateCollision()
+			#_calculateCollision()
 			points += 1
 		
 		timer -= delta
+		
+		if pulsateMeasurer <= 0:
+			pulsateMeasurer = pulsateInterval
+			wiggle_curve()
+		
+		pulsateMeasurer -= delta
 		
 		if Input.is_action_pressed("charge_boost") and STATE != playerStates.CHARGING:
 			chargeTimer += delta * 10
@@ -95,6 +109,8 @@ func _physics_process(delta):
 		
 		if chargeTimer > 0:
 			update_water(water - velocity.length() * (chargeTimer + 1))
+		elif speedModifier == 2.5:
+			update_water(water + velocity.length())
 		else:
 			update_water(water - velocity.length())
 		#print("Water level: " + str(water))
@@ -108,9 +124,9 @@ func update_water(var newValue):
 	#print(water)
 	var waterpercent : float = water / maxWater 
 	rootHead.modulate = Color(1,1,1, waterpercent)
-	testLine.modulate = Color(1,1,1, clamp(waterpercent,0,1))
+	testLine.modulate = Color(1,1,1, clamp(waterpercent,0.2,1))
 	deadHead.modulate = Color(1,1,1, -waterpercent + 1)
-	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,1))
+	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,0.8))
 	#print(str(testLine.modulate.a) + " ::: " + str(deadRoot.modulate.a) + " ::: " + str(water))
 	
 	if water <= 0:
@@ -119,9 +135,13 @@ func update_water(var newValue):
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance
 	STATE = playerStates.DEACTIVATED
+	rootHead.modulate = Color(1,1,1, 0.2)
+	testLine.modulate = Color(1,1,1, 0.2)
+	deadHead.modulate = Color(1,1,1, 0.8)
+	deadRoot.modulate = Color(1,1,1, 0.8)
 	print("Player Deactivated")
 	
-	#Reset player position to last pot or starting point
+	#Reset player position to last pot or starting point$
 	if connectedPots.size() >= 1:
 		print("died and have pots")
 		var lastConnectedPot = connectedPots[connectedPots.size() -1]
@@ -154,6 +174,23 @@ func _on_DetectionArea_area_entered(area):
 		winRect.visible = true
 	elif area.is_in_group("Enemy") and STATE == playerStates.CHARGING:
 		area.get_parent().stun()
+
+func wiggle_curve():
+	randomize()
+	for i in pulsatingCurve.get_point_count():
+		pulsatingCurve.set_point_value(i,clamp(pulsatingCurve.get_point_position(i).y + (randf() -0.5)/15 ,0.8 ,1.2))
+
+func _constructWiggleCurve():
+	var curve = Curve.new()
+	
+	var flipflop = false
+	for i in range(100):
+		if flipflop:
+			curve.add_point(Vector2(i, 0.8))
+		else:
+			curve.add_point(Vector2(i, 1.2))
+		flipflop = !flipflop
+	return curve
 
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)

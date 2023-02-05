@@ -189,7 +189,8 @@ func _on_DetectionArea_body_entered(body):
 
 func _on_DetectionArea_area_entered(area):
 	if area.is_in_group("Manhole"):
-		winRect.visible = true
+		Utils.level_success()
+#		winRect.visible = true
 	elif area.is_in_group("Enemy") and STATE == playerStates.CHARGING:
 		area.get_parent().stun()
 

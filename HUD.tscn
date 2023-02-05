@@ -29,3 +29,7 @@ value = 1.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
 nine_patch_stretch = true
+
+[node name="HP" type="Control" parent="Control"]
+margin_right = 40.0
+margin_bottom = 40.0

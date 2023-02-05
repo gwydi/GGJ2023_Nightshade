@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Counter.png-97099a937bd6a0f18451e9584190d860.stex"
+path="res://.import/Counter2.png-2566f657dc6b57acf976211077d00bbf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Counter.png"
-dest_files=[ "res://.import/Counter.png-97099a937bd6a0f18451e9584190d860.stex" ]
+source_file="res://Sprites/Counter2.png"
+dest_files=[ "res://.import/Counter2.png-2566f657dc6b57acf976211077d00bbf.stex" ]
 
 [params]
 

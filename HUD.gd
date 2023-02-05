@@ -4,7 +4,8 @@ const hpEmpty = preload("res://HpEmpty.tscn")
 const hpFull = preload("res://HpFull.tscn")
 
 func _ready():
-	_updateHp()
+	Utils.connect_hud(self)
+
 
 func _process(delta):
 	var playerWater = Utils.player.water
@@ -12,9 +13,7 @@ func _process(delta):
 	if playerWater != null:
 		$Control/TextureProgress.value = playerWater / playerMaxWater * 1000
 
-func _updateHp():
-	var maxHp = 10
-	var currentHp = 4
+func updateHp(var maxHp, var currentHp):
 	var deadHp = maxHp - currentHp
 	
 	var offset = 0.03

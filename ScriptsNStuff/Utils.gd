@@ -1,7 +1,11 @@
 extends Node
 
+var max_hp = 6
+var current_hp = max_hp
 
 onready var player = null
+onready var hud = null
+
 var playerStartPosition = Vector2.ZERO
 
 var Floor = null
@@ -23,6 +27,7 @@ func reset_player():
 	player.reset_checkpoint(newPlayer)
 	player = nextPlayer
 	player.connect("player_died_soft", self, "reset_player")
+	_update_hp(1)
 
 func connect_player(var Player):
 	if player == null:
@@ -31,3 +36,15 @@ func connect_player(var Player):
 		playerStartPosition = player.startLocation
 	else:
 		nextPlayer = Player
+
+func connect_hud(var hud):
+	self.hud = hud
+	_update_hp(0)
+
+func _update_hp(var reduction: int):
+	if current_hp - reduction <= 0:
+		#todo game over
+		pass
+	else:
+		current_hp -= reduction
+		hud.updateHp(max_hp, current_hp)

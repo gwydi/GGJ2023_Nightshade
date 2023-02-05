@@ -10,9 +10,7 @@ onready var playerScene = preload("res://Player/Player.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
-	
-	if Input.is_action_pressed("ui_accept"):
-		reset_player()
+	pass
 
 func reset_player():
 	print("Player ded")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -21,6 +21,34 @@
 [ext_resource path="res://Sprites/Counter2.png" type="Texture" id=19]
 [ext_resource path="res://Objects/Gnome.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Sprites/Obst-Rock.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Wall_Full.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Fence.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Edge.png" type="Texture" id=24]
+
+[sub_resource type="TileSet" id=10]
+0/name = "Edge.png 0"
+0/texture = ExtResource( 24 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 800, 1200 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 5, Vector2( 1, 1 ), 65 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 400, 400 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [sub_resource type="TileSet" id=4]
 resource_local_to_scene = true
@@ -98,7 +126,16 @@ resource_local_to_scene = true
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 143.993, 145.466, 149.298, 144.502, 149.298, 144.502, 400, 144.984, 399.587, 253.973, 256.84, 255.902, 255.394, 397.202, 145.922, 400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 400, 0, 400, 400, 0, 400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 141.2 )
+
+[sub_resource type="TileSet" id=9]
 1/name = "Smolwalls_Tileset_Revamp_V3_Shadow.png 1"
 1/texture = ExtResource( 14 )
 1/tex_offset = Vector2( 0, 0 )
@@ -118,10 +155,263 @@ resource_local_to_scene = true
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 6 )
 1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 1/z_index = 0
+2/name = "Wall_Full.png 2"
+2/texture = ExtResource( 22 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 1200, 1200 )
+2/tile_mode = 1
+2/autotile/bitmask_mode = 0
+2/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 65, Vector2( 0, 2 ), 321, Vector2( 1, 0 ), 5, Vector2( 1, 2 ), 320, Vector2( 2, 0 ), 261, Vector2( 2, 1 ), 260, Vector2( 2, 2 ), 324 ]
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 400, 400 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 7 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+2/z_index = 0
+3/name = "Fence.png 3"
+3/texture = ExtResource( 23 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 1200, 2000 )
+3/tile_mode = 1
+3/autotile/bitmask_mode = 0
+3/autotile/bitmask_flags = [ Vector2( 0, 0 ), 320, Vector2( 0, 1 ), 260, Vector2( 0, 2 ), 260, Vector2( 0, 3 ), 260, Vector2( 0, 4 ), 5, Vector2( 1, 0 ), 320, Vector2( 1, 4 ), 5, Vector2( 2, 0 ), 320, Vector2( 2, 1 ), 65, Vector2( 2, 2 ), 65, Vector2( 2, 3 ), 65, Vector2( 2, 4 ), 5 ]
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 400, 400 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 8 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 4 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 4 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 4 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 13 )
@@ -143,14 +433,14 @@ z_index = 4
 texture = ExtResource( 17 )
 
 [node name="Shovel" type="Sprite" parent="."]
-position = Vector2( 1555, 903 )
-rotation = -2.30632
+position = Vector2( 1433, 824 )
+rotation = 0.513908
 scale = Vector2( 0.25, 0.25 )
 z_index = 5
 texture = ExtResource( 10 )
 
 [node name="Obst-Barrel" type="Sprite" parent="."]
-position = Vector2( 1581, 998 )
+position = Vector2( 1473.04, 955.516 )
 scale = Vector2( 0.25, 0.25 )
 z_index = 5
 texture = ExtResource( 16 )
@@ -185,13 +475,16 @@ position = Vector2( 190, 633 )
 position = Vector2( 1169, 135 )
 
 [node name="Pot6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 252, 38 )
+position = Vector2( 259, 130 )
+
+[node name="Pot9" parent="." instance=ExtResource( 7 )]
+position = Vector2( 156, 246 )
 
 [node name="Pot7" parent="." instance=ExtResource( 7 )]
 position = Vector2( 197, 927 )
 
 [node name="Pot8" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1701, 926 )
+position = Vector2( 1593.04, 883.516 )
 
 [node name="Pot4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1543, 398 )
@@ -209,6 +502,21 @@ texture = ExtResource( 19 )
 [node name="Floor" type="StaticBody2D" parent="." groups=["Wall"]]
 z_as_relative = false
 script = ExtResource( 3 )
+
+[node name="Edge" type="TileMap" parent="Floor"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 8
+z_as_relative = false
+tile_set = SubResource( 10 )
+cell_size = Vector2( 400, 400 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_use_parent = true
+collision_friction = 0.0
+collision_layer = 2
+collision_mask = 2
+format = 1
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131072, 5, 0, 131072, 6, 0, 131072, 7, 0, 131072, 8, 0, 131072, 9, 0, 131072, 10, 0, 131072, 11, 0, 131072, 12, 0, 131072, 13, 0, 131072, 14, 0, 131072, 15, 0, 131072, 16, 0, 131072, 17, 0, 131072, 18, 0, 131072, 19, 0, 131072, 65553, 1, 196608, 65554, 1, 196609, 65555, 1, 196611, 131089, 1, 196608, 131090, 1, 196610, 131091, 1, 196611, 196625, 1, 196608, 196626, 1, 196610, 196627, 1, 196611, 262161, 1, 196608, 262162, 1, 196609, 262163, 1, 196611, 327697, 1, 196608, 327698, 1, 196609, 327699, 1, 196611, 393233, 1, 196608, 393234, 1, 196610, 393235, 1, 196611, 458769, 1, 262144, 458770, 1, 262146, 458771, 1, 262147 )
+script = ExtResource( 2 )
 
 [node name="TileMapStone" type="TileMap" parent="Floor"]
 scale = Vector2( 0.25, 0.25 )
@@ -257,9 +565,9 @@ script = ExtResource( 2 )
 
 [node name="TileMapWall" type="TileMap" parent="Floor" groups=["Wall"]]
 scale = Vector2( 0.25, 0.25 )
-z_index = 5
+z_index = 6
 z_as_relative = false
-tile_set = SubResource( 5 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 400, 400 )
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 collision_use_parent = true
@@ -267,17 +575,17 @@ collision_friction = 0.0
 collision_layer = 2
 collision_mask = 2
 format = 1
-tile_data = PoolIntArray( -65533, 1, 0, 3, 1, 65536, 13, 1, 0, 65539, 1, 131072, 65549, 1, 65536, 131085, 1, 65536, 196611, 1, 0, 196621, 1, 65536, 327679, 1, 196609, 262144, 1, 196610, 262145, 1, 196610, 262146, 1, 196610, 262147, 1, 131075, 262157, 1, 131072, 393229, 1, 0, 458765, 1, 65536, 524301, 1, 65536, 589837, 1, 65536, 655373, 1, 65536, 720909, 1, 131072, 1179649, 22, 0 )
+tile_data = PoolIntArray( -65536, 2, 0, -65535, 2, 1, -65534, 2, 1, -65533, 2, 1, -65532, 2, 1, -65531, 2, 1, -65530, 2, 1, -65529, 2, 1, -65528, 2, 1, -65527, 2, 1, -65526, 2, 1, -65525, 2, 1, -65524, 2, 1, -65523, 2, 1, -65522, 2, 1, -65521, 2, 1, -65520, 2, 1, -65519, 2, 1, -65518, 2, 1, -65517, 2, 1, 0, 2, 65536, 1, 22, 2, 2, 22, 2, 3, 1, 65536, 13, 1, 65536, 14, 22, 0, 15, 22, 2, 16, 22, 2, 17, 22, 2, 18, 3, 131074, 65536, 2, 65536, 65538, 22, 65538, 65539, 1, 131072, 65540, 4, 0, 65545, 22, 2, 65547, 22, 3, 65549, 1, 65536, 65550, 22, 65536, 65551, 22, 65538, 65552, 22, 65537, 65553, 22, 65538, 65554, 3, 131074, 131085, 1, 65536, 131086, 22, 65536, 131087, 22, 65537, 131090, 3, 131074, 196608, 2, 65536, 196611, 1, 0, 196621, 1, 65536, 196622, 22, 65536, 196623, 22, 65537, 196626, 3, 131074, 262144, 2, 65536, 262145, 1, 196610, 262146, 1, 196610, 262147, 1, 131075, 262157, 1, 131072, 262162, 3, 131074, 327680, 2, 65536, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327698, 3, 131074, 393216, 2, 65536, 393226, 0, 0, 393227, 0, 0, 393229, 1, 0, 393234, 3, 131074, 458752, 2, 65536, 458762, 0, 0, 458765, 1, 65536, 458770, 3, 131074, 524288, 2, 65536, 524289, 22, 65537, 524290, 22, 65537, 524291, 22, 0, 524301, 1, 65536, 524306, 3, 131074, 589824, 2, 65536, 589825, 22, 65537, 589826, 22, 65537, 589827, 22, 0, 589837, 1, 65536, 589842, 3, 131074, 655360, 2, 131072, 655361, 2, 131073, 655362, 2, 131073, 655363, 2, 131073, 655364, 2, 131073, 655365, 2, 131073, 655366, 2, 131073, 655367, 2, 131073, 655368, 2, 131073, 655369, 2, 131073, 655370, 2, 131073, 655371, 2, 131073, 655372, 2, 131073, 655373, 2, 131073, 655374, 2, 131073, 655375, 2, 131073, 655376, 2, 131073, 655377, 2, 131073, 655378, 2, 131073, 655379, 2, 131073, 1179649, 22, 0 )
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 70, 248 )
+position = Vector2( 162, 247 )
 
 [node name="Manhole" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1705, 116 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1081, 140 )
+position = Vector2( 1080, 201 )
 rotation = -4.71238
 __meta__ = {
 "_edit_group_": true
@@ -288,7 +596,9 @@ initialWaitTime = 5
 wait_time = 0.001
 
 [node name="Path" parent="EnemyManager" index="2"]
+position = Vector2( 11.0271, 85.7903 )
 rotation = -0.0005191
+scale = Vector2( 1, 0.860705 )
 points = PoolVector2Array( 6.0036, -6.99692, -13.0584, 113.993, -9.103, 200.995, 46.8668, 260.024, 71.8258, 340.037, 66.7914, 407.034, 53.7612, 466.028, 33.731, 525.017, 22.7023, 581.012, 68.6823, 620.035, 100.656, 672.052, 83.6157, 750.043, 31.5952, 790.016, -45.4207, 820.977, -123.436, 850.937, -123.472, 921.937, -111.525, 1024.94, -31.5391, 1051.98, 60.446, 1081.03, 48.4138, 1144.02 )
 
 [node name="EnemyManager2" parent="." instance=ExtResource( 8 )]
@@ -304,7 +614,7 @@ wait_time = 0.001
 
 [node name="Path" parent="EnemyManager2" index="2"]
 rotation = -0.0005191
-points = PoolVector2Array( 0.00102234, -2, -87.0221, 42.9553, -170.045, 86.9127, -302.055, 107.845, -473.061, 118.757, -626.061, 118.679, -745.049, 95.6179, -790.028, 54.5948, -821.981, -37.4216, -834.922, -151.428, -761.901, -192.391, -585.884, -226.3, -458.878, -238.235, -349.872, -250.179, -332.825, -342.171, -342.787, -415.176, -377.74, -507.194, -507.71, -565.26, -604.684, -616.31, -726.661, -660.373, -760.63, -721.39, -771.568, -842.396, -771.482, -1010.4, -765.43, -1111.39, -749.362, -1243.38, -734.302, -1360.38, -731.249, -1465.38, -659.204, -1552.34, -536.189, -1582.28, -427.205, -1551.22, -373.234, -1494.19, -378.32, -1325.19, -380.455, -1062.2, -385.528, -921.198, -370.615, -750.19, -342.692, -601.176, -301.778, -433.155, -291.868, -257.15, -280.937, -123.144, -291.012, 22.8507, -281.076, 147.856, -276.125, 243.858, -252.219, 427.871 )
+points = PoolVector2Array( 0.00102234, -2, -87.0221, 42.9553, -170.045, 86.9127, -302.055, 107.845, -473.061, 118.757, -626.061, 118.679, -745.049, 95.6179, -745.019, 36.6179, -745.979, -41.3826, -732.931, -134.376, -681.896, -202.35, -585.884, -226.3, -458.878, -238.235, -349.872, -250.179, -332.825, -342.171, -342.787, -415.176, -377.74, -507.194, -507.71, -565.26, -604.684, -616.31, -726.661, -660.373, -760.63, -721.39, -771.568, -842.396, -771.482, -1010.4, -765.43, -1111.39, -749.362, -1243.38, -734.302, -1360.38, -731.249, -1465.38, -659.204, -1552.34, -539.203, -1554.28, -427.205, -1551.22, -373.234, -1494.19, -378.32, -1325.19, -380.455, -1062.2, -385.528, -921.198, -370.615, -750.19, -342.692, -601.176, -301.778, -433.155, -291.868, -257.15, -280.937, -123.144, -291.012, 22.8507, -281.076, 147.856, -276.125, 243.858, -252.219, 427.871 )
 
 [node name="EnemyManager3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 923, 823 )
@@ -324,10 +634,10 @@ points = PoolVector2Array( -1.00104, 1.99951, 8.92999, 136.005, 9.89087, 212.005
 [node name="Hud" parent="." instance=ExtResource( 11 )]
 
 [node name="LevelCamera" parent="." instance=ExtResource( 12 )]
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 1.1, 1.1 )
 
 [node name="Gnome" parent="." instance=ExtResource( 20 )]
-position = Vector2( 1806, 1022 )
+position = Vector2( 1698.04, 979.516 )
 rotation = -2.48394
 
 [node name="Obst-Rock" type="Sprite" parent="Gnome"]

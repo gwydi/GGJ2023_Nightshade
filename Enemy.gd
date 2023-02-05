@@ -65,13 +65,11 @@ func _on_StunTimer_timeout():
 	stunned = false
 	walking = true
 	stunSprite.visible = false
-<<<<<<< HEAD
 	ActiveSprite.visible = true
 	soundWhistling.play()
 
 func _on_HiteSound_finished():
 	soundHit.stop()
-=======
 
 func _do_raycasting():
 	var startPosition = Vector2.ZERO
@@ -93,4 +91,3 @@ func _do_raycasting():
 		localPoints.append(to_local(intersection["position"]))
 		
 	$Indicator.polygon = PoolVector2Array(localPoints)
->>>>>>> 589a71e84d6082c3ead079374c696fdf73f9674b

@@ -1,5 +1,8 @@
 extends Sprite
 
+onready var stunTimer = $StunTimer
+onready var stunSprite = $StunSprite
+
 var targetPosition: Vector2
 var walking = false
 signal targetReached
@@ -9,6 +12,7 @@ var direction
 var steps
 var step_counter = 0
 var speed = 1
+var stunned = false
 
 func _ready():
 	pass
@@ -35,8 +39,21 @@ func setTarget(target: Vector2):
 	walking = true
 
 func _on_Area2D_area_entered(area):
-	var isPlayer = area.is_in_group("Player")
-	print("enemy entered ")
-	if (isPlayer):
-		print("player")
-		area.get_parent().emit_signal("player_died_soft")
+	if !stunned and walking:
+		var isPlayer = area.is_in_group("Player")
+		print("enemy entered ")
+		if (isPlayer):
+			if(not area.get_parent().isCharging()):
+				print("player")
+				area.get_parent().emit_signal("player_died_soft")
+
+func stun():
+	stunned = true
+	walking = false
+	stunSprite.visible = true
+	stunTimer.start()
+
+func _on_StunTimer_timeout():
+	stunned = false
+	walking = true
+	stunSprite.visible = false

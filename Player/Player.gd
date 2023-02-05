@@ -23,10 +23,10 @@ var velocity: Vector2 = Vector2(0.5,0)
 var timer = 0
 var points = 0
 
-var startLocation = Vector2(0,0)
+export var startLocation = Vector2(0,0)
 var connectedPots = []
 
-var maxWater = 500
+var maxWater = 2000
 var water = maxWater
 
 var chargeTimer = 0
@@ -62,14 +62,14 @@ func _process(delta):
 		timer -= delta
 		
 		if Input.is_action_pressed("charge_boost") and STATE != playerStates.CHARGING:
-			chargeTimer += delta
+			chargeTimer += delta * 10
 			STATE = playerStates.HOLDING
-			if chargeTimer >= chargeMAXThreshhold:
+			if chargeTimer >= chargeMAXThreshhold * 10:
 				STATE = playerStates.CHARGING
 			print("Player holding charge")
 			print(chargeTimer)
 		else:
-			chargeTimer = clamp(chargeTimer - delta * 2,0,2000)
+			chargeTimer = clamp(chargeTimer - delta * 20,0,2000)
 			if chargeTimer > 0:
 				STATE = playerStates.CHARGING
 				print("Player Charging")
@@ -152,6 +152,8 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_area_entered(area):
 	if area.is_in_group("Manhole"):
 		winRect.visible = true
+	elif area.is_in_group("Enemy") and STATE == playerStates.CHARGING:
+		area.get_parent().stun()
 
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
@@ -167,3 +169,6 @@ func _calculateCollision():
 		col.set_build_mode(1)
 		col.polygon = poly
 		detectionAreaGen.add_child(col)
+
+func isCharging():
+	return STATE == playerStates.CHARGING

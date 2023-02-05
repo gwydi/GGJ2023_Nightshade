@@ -91,7 +91,7 @@ resource_local_to_scene = true
 [node name="Level1" type="Node2D"]
 
 [node name="Pot" parent="." instance=ExtResource( 7 )]
-position = Vector2( 200, 401 )
+position = Vector2( 1771, 474 )
 
 [node name="Pot2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 899, 789 )
@@ -163,7 +163,10 @@ current = true
 zoom = Vector2( 1.25, 1.25 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4161, -1020 )
+position = Vector2( 121, -955 )
+__meta__ = {
+"_edit_group_": true
+}
 initialWaitTime = 5
 
 [node name="Path" parent="EnemyManager" index="2"]

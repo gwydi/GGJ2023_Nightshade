@@ -8,7 +8,7 @@
 [ext_resource path="res://Player/Root_Dead.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 10 )
+extents = Vector2( 51.5, 29.5 )
 
 [node name="Player" type="Node2D"]
 z_index = 5
@@ -16,9 +16,9 @@ z_as_relative = false
 script = ExtResource( 1 )
 pointInterval = 0.05
 ROTATION_SPEED = 2.0
+startLocation = Vector2( 635, 625 )
 
 [node name="AliveRoot" type="Line2D" parent="."]
-points = PoolVector2Array( -108, -47 )
 width = 40.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
@@ -58,7 +58,7 @@ __meta__ = {
 }
 
 [node name="RootCollision" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( -1, 0 )
+position = Vector2( -3.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="WinRect" type="ColorRect" parent="."]

@@ -416,6 +416,7 @@ position = Vector2( 1885, 105 )
 position = Vector2( 2872, 40 )
 
 [node name="LevelCam" parent="." instance=ExtResource( 16 )]
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1459, 909 )

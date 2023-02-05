@@ -14,11 +14,11 @@ size_flags_horizontal = 2
 size_flags_vertical = 2
 
 [node name="TextureProgress" type="TextureProgress" parent="Control"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -250.0
-margin_top = 64.0
-margin_right = 250.0
+anchor_left = 0.95
+anchor_right = 0.99
+margin_left = -500.0
+margin_top = 10.0
+margin_right = 10.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 500, 500 )
 rect_scale = Vector2( 1, 0.1 )
@@ -31,5 +31,7 @@ texture_progress = ExtResource( 2 )
 nine_patch_stretch = true
 
 [node name="HP" type="Control" parent="Control"]
+margin_left = 10.0
+margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 40.0

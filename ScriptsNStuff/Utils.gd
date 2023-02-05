@@ -53,8 +53,9 @@ func _update_hp(var reduction: int):
 		hud.updateHp(max_hp, current_hp)
 
 func level_success():
+	scene_changed()
 	if nextLevel == null:
-		get_tree().change_scene("res://VictoryScene.tscn")
+		get_tree().change_scene("res://SuccessScene.tscn")
 	else:
 		get_tree().change_scene(nextLevel)
 
@@ -70,4 +71,4 @@ func scene_changed():
 	playerStartPosition = null
 	
 func set_next_level(var level):
-	nextLevel = level
+	self.nextLevel = level

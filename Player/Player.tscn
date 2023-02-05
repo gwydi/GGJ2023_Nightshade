@@ -8,7 +8,7 @@
 [ext_resource path="res://Player/Root_Dead.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 51.5, 29.5 )
+extents = Vector2( 25, 10 )
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;

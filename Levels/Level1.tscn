@@ -93,6 +93,7 @@ resource_local_to_scene = true
 [node name="Level1" type="Node2D"]
 script = ExtResource( 13 )
 hp = 0
+nextLevel = "res://Levels/Level2.tscn"
 
 [node name="Pot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1771, 474 )

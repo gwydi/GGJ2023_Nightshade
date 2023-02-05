@@ -5,4 +5,5 @@ export(String) var nextLevel = null
 
 func _ready():
 	Utils.set_hp(hp)
+	Utils.set_next_level(nextLevel)
 

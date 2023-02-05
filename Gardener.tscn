@@ -52,14 +52,13 @@ wait_time = 5.0
 one_shot = true
 
 [node name="StunSprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( 7.94141, -396.27 )
-rotation = -1.5708
+rotation = -2.01935
 texture = ExtResource( 3 )
 
 [node name="ActiveSprite" type="Sprite" parent="."]
 position = Vector2( 7.94141, -396.27 )
-rotation = -2.0944
+rotation = -1.5708
 texture = ExtResource( 6 )
 
 [node name="WhistlingSound" type="AudioStreamPlayer2D" parent="."]

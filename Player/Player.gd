@@ -198,6 +198,9 @@ func _on_DetectionArea_area_entered(area):
 #		winRect.visible = true
 	elif area.is_in_group("Enemy") and STATE == playerStates.CHARGING:
 		area.get_parent().stun()
+	
+	if area.is_in_group("Wall"):
+		emit_signal("player_died_soft")
 
 func wiggle_curve():
 	randomize()

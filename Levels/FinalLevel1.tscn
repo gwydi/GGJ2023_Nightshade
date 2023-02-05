@@ -208,7 +208,7 @@ position = Vector2( 1227, 991 )
 [node name="Pot3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1140, 95 )
 
-[node name="Floor" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="." groups=["Wall"]]
 z_as_relative = false
 script = ExtResource( 3 )
 
@@ -264,6 +264,7 @@ z_as_relative = false
 tile_set = SubResource( 5 )
 cell_size = Vector2( 400, 400 )
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+show_collision = true
 collision_use_parent = true
 collision_friction = 0.0
 collision_layer = 2
@@ -317,7 +318,7 @@ points = PoolVector2Array( 6.99744, 5.00366, 7.95709, 83.0042, 44.9364, 123.023,
 [node name="Hud" parent="." instance=ExtResource( 11 )]
 
 [node name="LevelCamera" parent="." instance=ExtResource( 12 )]
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="Gnome" parent="." instance=ExtResource( 19 )]
 position = Vector2( 1275, 100 )

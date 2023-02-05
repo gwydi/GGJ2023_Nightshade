@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Root1.png" type="Texture" id=2]
@@ -9,6 +9,25 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 51.5, 29.5 )
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.3;
+uniform float softness = 3.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/color = null
+shader_param/multiplier = 0.005
+shader_param/softness = 0.4
 
 [node name="Player" type="Node2D"]
 z_index = 5
@@ -77,6 +96,15 @@ margin_right = 426.5
 margin_bottom = 482.0
 rect_scale = Vector2( 10, 10 )
 text = "YOU WIN!"
+
+[node name="VignetteMask" type="CanvasLayer" parent="."]
+layer = 10
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VignetteMask"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [connection signal="area_entered" from="DetectionAreaGen" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]

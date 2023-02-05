@@ -18,6 +18,7 @@ onready var winRect = $WinRect
 onready var detectionArea = $DetectionArea
 onready var rootCollision = $DetectionArea/RootCollision
 onready var detectionAreaGen = $DetectionAreaGen
+onready var vignetteMask = $VignetteMask
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -55,6 +56,7 @@ func _ready():
 	pulsatingCurve = _constructWiggleCurve()
 	testLine.width_curve = pulsatingCurve
 	deadRoot.width_curve = pulsatingCurve
+	vignetteMask
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -84,7 +86,7 @@ func _process(delta):
 				Utils.camera.trauma += 1
 				Utils.camera.decay = 2
 			print("Player holding charge")
-			print(chargeTimer)
+			#print(chargeTimer)
 		else:
 			chargeTimer = clamp(chargeTimer - delta * 24,0,2000)
 			if chargeTimer > 0.2:
@@ -127,7 +129,7 @@ func _physics_process(delta):
 			update_water(water - velocity.length() * (chargeTimer + 1))
 
 func update_water(var newValue):
-	water = newValue
+	water = clamp(newValue,-1,maxWater)
 	#print(water)
 	var waterpercent : float = water / maxWater 
 	rootHead.modulate = Color(1,1,1, waterpercent)
@@ -199,6 +201,7 @@ func _constructWiggleCurve():
 		flipflop = !flipflop
 	return curve
 
+#creates collision for a pointarray
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
 	detectionAreaGen.position = to_local(Vector2.ZERO)

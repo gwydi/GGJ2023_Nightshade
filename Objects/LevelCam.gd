@@ -34,6 +34,7 @@ func _process(delta):
 		print(trauma)
 
 func shake():
+	trauma = clamp(trauma, -1, 1)
 	var amount = pow(trauma, trauma_power)
 	noise_y += 1
 	rotation = max_roll * amount * noise.get_noise_2d(noise.seed, noise_y)

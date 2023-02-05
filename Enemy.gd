@@ -26,6 +26,7 @@ func _process(delta):
 	if (step_counter >= steps):
 		walking = false
 		emit_signal("targetReached")
+	_do_raycasting()
 
 func setTarget(target: Vector2):
 	targetPosition = target
@@ -39,7 +40,7 @@ func setTarget(target: Vector2):
 	walking = true
 
 func _on_Area2D_area_entered(area):
-	if !stunned and walking:
+	if !stunned and walking and false:
 		var isPlayer = area.is_in_group("Player")
 		print("enemy entered ")
 		if (isPlayer):
@@ -57,3 +58,26 @@ func _on_StunTimer_timeout():
 	stunned = false
 	walking = true
 	stunSprite.visible = false
+
+func _do_raycasting():
+	var startPosition = Vector2.ZERO
+	var space_state = get_world_2d().direct_space_state
+	var localPoints = [startPosition- Vector2(-50,0), startPosition - Vector2(50,5)]
+	for i in range(100):
+		var castLocal = Vector2(-1600 + i*32, 2500)
+		var intersection = space_state.intersect_ray(to_global(startPosition), to_global(castLocal), [$CollisionDetection, $Area2D], 2147483647, true, true)
+		if (intersection.empty()):
+			localPoints.append(castLocal)
+			continue
+		elif !stunned and walking:
+			var isPlayer = intersection["collider"].is_in_group("Player")
+			if (isPlayer):
+				if(not intersection["collider"].get_parent().isCharging()):
+					intersection["collider"].get_parent().emit_signal("player_died_soft")
+		elif intersection["collider"].is_in_group("Wall"):
+			pass
+		localPoints.append(to_local(intersection["position"]))
+		
+	$Indicator.polygon = PoolVector2Array(localPoints)
+
+

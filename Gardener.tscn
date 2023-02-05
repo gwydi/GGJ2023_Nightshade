@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Gardener1.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.710938, 0.624847, 0.624847, 0.294118, 0.866667, 0.145098, 0.145098, 0.529412 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 1024
+height = 1024
+use_hdr = true
 
 [node name="Gardener" type="Sprite"]
 scale = Vector2( 0.158333, 0.158333 )
@@ -11,8 +20,19 @@ script = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 position = Vector2( 69.4738, -164.211 )
 polygon = PoolVector2Array( -195.79, 50.5264, -1717.9, 2652.64, 1402.11, 2665.27, 82.1054, 44.2106 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = -1
+color = Color( 0.631373, 0.113725, 0.219608, 0.423529 )
+antialiased = true
+texture = SubResource( 2 )
+texture_offset = Vector2( 2000, 0 )
+texture_scale = Vector2( 0.5, 0 )
+texture_rotation_degrees = 90.0
+polygon = PoolVector2Array( 1427.37, 2456.85, 1389.48, 2501.06, 1332.63, 2520.01, -1496.12, 2520.01, -1553.69, 2501.06, -1591.58, 2463.16, -1604.21, 2406.32, -1586.79, 2348.8, -107.369, -44.2106, 120, -37.8948, 1421.06, 2317.9, 1433.69, 2393.69 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

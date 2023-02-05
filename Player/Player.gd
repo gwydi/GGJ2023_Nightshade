@@ -9,11 +9,12 @@ enum playerStates{
 export(float) var pointInterval = 0.5
 export(float) var ROTATION_SPEED
 
-onready var testLine = $TestLine
+onready var testLine = $AliveRoot
+onready var deadRoot = $DeadRoot
 onready var rootHead = $RootHead
+onready var deadHead = $DeadHead
 onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
 onready var winRect = $WinRect
-onready var progBar = $ProgressBar
 onready var detectionArea = $DetectionArea
 onready var detectionAreaGen = $DetectionAreaGen
 
@@ -41,12 +42,11 @@ func _ready():
 	print("started")
 	Utils.connect_player(self)
 	velocity = Vector2(randf() -0.5, randf() - 0.5).normalized()
-
+	
 	testLine.points.empty()
 	testLine.global_position -= global_position
+	deadRoot.global_position -= global_position
 
-	progBar.max_value = water
-	progBar.value = water
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,12 +55,10 @@ func _process(delta):
 		if timer <= 0:
 			timer = pointInterval
 			testLine.add_point(rootAnkPun.global_position)
+			deadRoot.add_point(rootAnkPun.global_position)
 			_calculateCollision()
 			points += 1
 		
-		if water <= 0:
-			emit_signal("player_died_soft")
-
 		timer -= delta
 		
 		if Input.is_action_pressed("ui_down") and STATE != playerStates.CHARGING:
@@ -83,6 +81,8 @@ func _process(delta):
 		elif Input.is_action_pressed("ui_right"):
 			velocity = velocity.rotated(ROTATION_SPEED * delta)
 		rootHead.look_at(global_position + velocity * 100) 
+		deadHead.look_at(global_position + velocity * 100) 
+
 
 func _physics_process(delta):
 	if STATE == playerStates.MOVING or STATE == playerStates.CHARGING:
@@ -91,19 +91,30 @@ func _physics_process(delta):
 		#print("speedmod" + str(speedModifier))
 		global_position += velocity * (chargeTimer * 3 + 1) * speedModifier
 		testLine.global_position -= velocity * (chargeTimer * 3 + 1) * speedModifier
+		deadRoot.global_position -= velocity * (chargeTimer * 3 + 1) * speedModifier
 		
 		if chargeTimer > 0:
-			water -= velocity.length() * (chargeTimer + 1)
+			update_water(water - velocity.length() * (chargeTimer + 1))
 		else:
-			water -= velocity.length()
-		progBar.value = water
+			update_water(water - velocity.length())
 		#print("Water level: " + str(water))
 		
 	elif STATE == playerStates.HOLDING:
 		if Input.is_action_pressed("ui_down"):
-			water -= velocity.length() * (chargeTimer + 1)
-		
-		progBar.value = water
+			update_water(water - velocity.length() * (chargeTimer + 1))
+
+func update_water(var newValue):
+	water = newValue
+	#print(water)
+	var waterpercent : float = water / maxWater 
+	rootHead.modulate = Color(1,1,1, waterpercent)
+	testLine.modulate = Color(1,1,1, clamp(waterpercent,0.2,1))
+	deadHead.modulate = Color(1,1,1, -waterpercent + 1)
+	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,0.8))
+	#print(str(testLine.modulate.a) + " ::: " + str(deadRoot.modulate.a) + " ::: " + str(water))
+	
+	if water <= 0:
+		emit_signal("player_died_soft")
 
 func reset_checkpoint(var playerInstance):
 	var newPlayer = playerInstance
@@ -116,10 +127,12 @@ func reset_checkpoint(var playerInstance):
 		var lastConnectedPot = connectedPots[connectedPots.size() -1]
 		newPlayer.position = lastConnectedPot.global_position
 		newPlayer.testLine.global_position -= lastConnectedPot.global_position
+		newPlayer.deadRoot.global_position -= lastConnectedPot.global_position
 	else:
 		print("died and have NO pots")
 		newPlayer.position = startLocation
 		newPlayer.testLine.global_position -= startLocation
+		newPlayer.deadRoot.global_position -= startLocation
 	
 	print("done with reseting player")
 
@@ -143,11 +156,11 @@ func _on_DetectionArea_area_entered(area):
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
 	detectionAreaGen.position = to_local(Vector2.ZERO)
-
+	
 	# remove old colliders
 	for oldCol in detectionAreaGen.get_children():
 		detectionAreaGen.remove_child(oldCol)
-
+	
 	# add new colliders
 	for poly in line_poly:
 		var col = CollisionPolygon2D.new()

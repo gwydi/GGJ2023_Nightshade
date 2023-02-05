@@ -163,7 +163,7 @@ current = true
 zoom = Vector2( 1.25, 1.25 )
 
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
-position = Vector2( 53, -1040 )
+position = Vector2( 4161, -1020 )
 initialWaitTime = 5
 
 [node name="Path" parent="EnemyManager" index="2"]

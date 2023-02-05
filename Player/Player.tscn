@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Root1.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/RootHead.png" type="Texture" id=3]
+[ext_resource path="res://Player/RootHead.png" type="Texture" id=3]
+[ext_resource path="res://Player/RootHead.gd" type="Script" id=4]
+[ext_resource path="res://Player/Root_Head_Dead.png" type="Texture" id=5]
+[ext_resource path="res://Player/Root_Dead.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 10 )
@@ -14,7 +17,8 @@ script = ExtResource( 1 )
 pointInterval = 0.05
 ROTATION_SPEED = 2.0
 
-[node name="TestLine" type="Line2D" parent="."]
+[node name="AliveRoot" type="Line2D" parent="."]
+points = PoolVector2Array( -108, -47 )
 width = 20.0
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 2 )
@@ -23,10 +27,23 @@ texture_mode = 1
 [node name="RootHead" type="Sprite" parent="."]
 scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="RootAnkuppelPunkt" type="Position2D" parent="RootHead"]
 position = Vector2( -400, 0 )
 scale = Vector2( 20, 20 )
+
+[node name="DeadRoot" type="Line2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+width = 20.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 6 )
+texture_mode = 1
+
+[node name="DeadHead" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.055, 0.05 )
+texture = ExtResource( 5 )
 
 [node name="DetectionAreaGen" type="Area2D" parent="." groups=["Player"]]
 position = Vector2( 1, 0 )
@@ -58,13 +75,6 @@ margin_right = 426.5
 margin_bottom = 482.0
 rect_scale = Vector2( 10, 10 )
 text = "YOU WIN!"
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-margin_left = -52.0
-margin_top = 23.0
-margin_right = 51.0
-margin_bottom = 37.0
 
 [connection signal="area_entered" from="DetectionAreaGen" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]

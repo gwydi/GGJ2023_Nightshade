@@ -1,5 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="Camera2D" type="Camera2D"]
+[ext_resource path="res://Objects/LevelCam.gd" type="Script" id=1]
+
+[node name="LevelCamera" type="Camera2D"]
 position = Vector2( 960, 540 )
+current = true
 zoom = Vector2( 1.098, 1.289 )
+script = ExtResource( 1 )

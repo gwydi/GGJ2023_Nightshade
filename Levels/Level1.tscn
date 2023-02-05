@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Wall_FORTESTING.tscn" type="PackedScene" id=10]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/LevelCam.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=4]
 resource_local_to_scene = true
@@ -157,11 +158,6 @@ position = Vector2( 637, 625 )
 [node name="Manhole" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1140, 329 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 960, 540 )
-current = true
-zoom = Vector2( 1.25, 1.25 )
-
 [node name="EnemyManager" parent="." instance=ExtResource( 8 )]
 position = Vector2( 121, -955 )
 __meta__ = {
@@ -177,5 +173,8 @@ position = Vector2( 1382, 269 )
 rotation = 1.54675
 
 [node name="Hud" parent="." instance=ExtResource( 11 )]
+
+[node name="LevelCamera" parent="." instance=ExtResource( 12 )]
+zoom = Vector2( 1.25, 1.25 )
 
 [editable path="EnemyManager"]

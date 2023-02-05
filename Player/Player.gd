@@ -16,7 +16,9 @@ onready var deadHead = $DeadHead
 onready var rootAnkPun = $RootHead/RootAnkuppelPunkt
 onready var winRect = $WinRect
 onready var detectionArea = $DetectionArea
+onready var rootCollision = $DetectionArea/RootCollision
 onready var detectionAreaGen = $DetectionAreaGen
+onready var vignetteMask = $VignetteMask
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -54,8 +56,7 @@ func _ready():
 	pulsatingCurve = _constructWiggleCurve()
 	testLine.width_curve = pulsatingCurve
 	deadRoot.width_curve = pulsatingCurve
-
-
+	vignetteMask
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,17 +78,25 @@ func _process(delta):
 		
 		if Input.is_action_pressed("charge_boost") and STATE != playerStates.CHARGING:
 			chargeTimer += delta * 10
+			Utils.camera.trauma += 0.025
+			Utils.camera.decay = 0.9
 			STATE = playerStates.HOLDING
-			if chargeTimer >= chargeMAXThreshhold * 10:
+			if chargeTimer >= chargeMAXThreshhold * 3:
 				STATE = playerStates.CHARGING
+				Utils.camera.trauma += 1
+				Utils.camera.decay = 2
 			print("Player holding charge")
-			print(chargeTimer)
+			#print(chargeTimer)
 		else:
-			chargeTimer = clamp(chargeTimer - delta * 20,0,2000)
-			if chargeTimer > 0:
+			chargeTimer = clamp(chargeTimer - delta * 24,0,2000)
+			if chargeTimer > 0.2:
 				STATE = playerStates.CHARGING
 				print("Player Charging")
 			else:
+				if STATE == playerStates.CHARGING:
+					rootCollision.disabled = true
+					rootCollision.disabled = false
+					Utils.camera.decay = 1
 				STATE = playerStates.MOVING
 		
 		if Input.is_action_pressed("steer_left"):
@@ -109,7 +118,7 @@ func _physics_process(delta):
 		
 		if chargeTimer > 0:
 			update_water(water - velocity.length() * (chargeTimer + 1))
-		elif speedModifier == 2.5:
+		elif speedModifier == 2:
 			update_water(water + velocity.length())
 		else:
 			update_water(water - velocity.length())
@@ -120,7 +129,7 @@ func _physics_process(delta):
 			update_water(water - velocity.length() * (chargeTimer + 1))
 
 func update_water(var newValue):
-	water = newValue
+	water = clamp(newValue,-1,maxWater)
 	#print(water)
 	var waterpercent : float = water / maxWater 
 	rootHead.modulate = Color(1,1,1, waterpercent)
@@ -192,6 +201,7 @@ func _constructWiggleCurve():
 		flipflop = !flipflop
 	return curve
 
+#creates collision for a pointarray
 func _calculateCollision():
 	var line_poly = Geometry.offset_polyline_2d(testLine.points, 10)
 	detectionAreaGen.position = to_local(Vector2.ZERO)

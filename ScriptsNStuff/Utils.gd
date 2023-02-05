@@ -3,6 +3,8 @@ extends Node
 var max_hp = 6
 var current_hp = max_hp
 
+var nextLevel = null
+
 onready var player = null
 onready var hud = null
 
@@ -44,11 +46,28 @@ func connect_hud(var hud):
 
 func _update_hp(var reduction: int):
 	if current_hp - reduction <= 0:
-		#todo game over
-		pass
+		get_tree().change_scene("res://DeathScene.tscn")
+		scene_changed()
 	else:
 		current_hp -= reduction
 		hud.updateHp(max_hp, current_hp)
 
+func level_success():
+	if nextLevel == null:
+		get_tree().change_scene("res://VictoryScene.tscn")
+	else:
+		get_tree().change_scene(nextLevel)
+
+func set_hp(var maxHp):
+	self.max_hp = max_hp
+	self.current_hp = max_hp
+	_update_hp(0)
+
 func scene_changed():
+	if (player != null && is_instance_valid(player)):
+		player.queue_free()
+	player = null
 	playerStartPosition = null
+	
+func set_next_level(var level):
+	nextLevel = level

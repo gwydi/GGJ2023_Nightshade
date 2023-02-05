@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Brick_Tilemap_v4.png-bb332469e2b2abf8bfc3277e8d1235c0.stex"
+path="res://.import/Brick_Tilemap.png-1bfff1240a43c09aa41cc63eed6c0306.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Brick_Tilemap_v4.png"
-dest_files=[ "res://.import/Brick_Tilemap_v4.png-bb332469e2b2abf8bfc3277e8d1235c0.stex" ]
+source_file="res://Brick_Tilemap.png"
+dest_files=[ "res://.import/Brick_Tilemap.png-1bfff1240a43c09aa41cc63eed6c0306.stex" ]
 
 [params]
 

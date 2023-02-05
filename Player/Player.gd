@@ -60,7 +60,7 @@ func _ready():
 	pulsatingCurve = _constructWiggleCurve()
 	testLine.width_curve = pulsatingCurve
 	deadRoot.width_curve = pulsatingCurve
-	vignetteMask
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

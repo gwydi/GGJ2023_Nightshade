@@ -10,6 +10,7 @@ var playerStartPosition = Vector2.ZERO
 
 var Floor = null
 var nextPlayer = null
+var camera = null
 
 onready var playerScene = preload("res://Player/Player.tscn")
 
@@ -48,3 +49,6 @@ func _update_hp(var reduction: int):
 	else:
 		current_hp -= reduction
 		hud.updateHp(max_hp, current_hp)
+
+func scene_changed():
+	playerStartPosition = null

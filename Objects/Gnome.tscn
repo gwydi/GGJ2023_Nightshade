@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sounds/GnomedSound.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sprites/Gnome.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Gnome.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 176.471, 92.2811 )
+
+[node name="Gnome" type="Sprite"]
+scale = Vector2( 0.25, 0.25 )
+z_index = 5
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 39.512, 22.5572 )
+rotation = 0.684815
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

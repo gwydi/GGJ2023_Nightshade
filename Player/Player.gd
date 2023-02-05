@@ -157,6 +157,8 @@ func reset_checkpoint(var playerInstance):
 	testLine.modulate = Color(1,1,1, 0.2)
 	deadHead.modulate = Color(1,1,1, 0.8)
 	deadRoot.modulate = Color(1,1,1, 0.8)
+	soundGrowing.stop()
+	soundCharging.stop()
 	print("Player Deactivated")
 	
 	#Reset player position to last pot or starting point$

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/LevelCam.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=13]
+[ext_resource path="res://Sounds/ChirpingBG.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Objects/Gnome.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=4]
 resource_local_to_scene = true
@@ -94,6 +96,7 @@ resource_local_to_scene = true
 script = ExtResource( 13 )
 hp = 0
 nextLevel = "res://Levels/Level2.tscn"
+levelBG = ExtResource( 14 )
 
 [node name="Pot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1771, 474 )
@@ -180,5 +183,8 @@ rotation = 1.54675
 
 [node name="LevelCamera" parent="." instance=ExtResource( 12 )]
 zoom = Vector2( 1.25, 1.25 )
+
+[node name="Gnome" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1580, 909 )
 
 [editable path="EnemyManager"]

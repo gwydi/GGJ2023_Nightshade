@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Gardener1.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/crappytypeStunSprite.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 315.853
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.710938, 0.624847, 0.624847, 0.294118, 0.866667, 0.145098, 0.145098, 0.529412 )
@@ -14,8 +18,14 @@ use_hdr = true
 
 [node name="Gardener" type="Sprite"]
 scale = Vector2( 0.158333, 0.158333 )
+z_index = 10
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="CollisionDetection" type="Area2D" parent="." groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionDetection"]
+shape = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -34,5 +44,16 @@ texture_scale = Vector2( 0.5, 0 )
 texture_rotation_degrees = 90.0
 polygon = PoolVector2Array( 1427.37, 2456.85, 1389.48, 2501.06, 1332.63, 2520.01, -1496.12, 2520.01, -1553.69, 2501.06, -1591.58, 2463.16, -1604.21, 2406.32, -1586.79, 2348.8, -107.369, -44.2106, 120, -37.8948, 1421.06, 2317.9, 1433.69, 2393.69 )
 
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="StunSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 6.3158, -467.369 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]

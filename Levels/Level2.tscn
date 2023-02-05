@@ -9,11 +9,11 @@
 [ext_resource path="res://Objects/Pot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://EnemyManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/Manhole.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sprites/Shelf.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Shelf_v2.png" type="Texture" id=10]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/Smolwalls_Tileset_Revamp.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Wall_Full.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Counter.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Counter2.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Shovel.png" type="Texture" id=15]
 
 [sub_resource type="TileSet" id=23]
@@ -178,6 +178,18 @@ position = Vector2( 1938, 543 )
 [node name="Pot3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1683, 994 )
 
+[node name="ShelfV2" type="Sprite" parent="."]
+position = Vector2( 203, 265 )
+scale = Vector2( 0.25, 0.25 )
+z_index = 5
+texture = ExtResource( 10 )
+
+[node name="ShelfV3" type="Sprite" parent="."]
+position = Vector2( 1433, 267 )
+scale = Vector2( 0.25, 0.25 )
+z_index = 5
+texture = ExtResource( 10 )
+
 [node name="Shovel" type="Sprite" parent="."]
 position = Vector2( 517, 213 )
 rotation = -0.515429
@@ -185,24 +197,12 @@ scale = Vector2( 0.25, 0.25 )
 z_index = 3
 texture = ExtResource( 15 )
 
-[node name="Shelf2" type="Sprite" parent="."]
-position = Vector2( 198, 267 )
-scale = Vector2( 0.25, 0.25 )
-z_index = 4
-texture = ExtResource( 10 )
-
-[node name="Counter" type="Sprite" parent="."]
-position = Vector2( 484, 793 )
+[node name="Counter2" type="Sprite" parent="."]
+position = Vector2( 482, 811 )
 rotation = -3.14159
 scale = Vector2( 0.25, 0.25 )
 z_index = 4
 texture = ExtResource( 14 )
-
-[node name="Shelf" type="Sprite" parent="."]
-position = Vector2( 1434, 258 )
-scale = Vector2( 0.25, 0.25 )
-z_index = 4
-texture = ExtResource( 10 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 z_as_relative = false
@@ -210,7 +210,7 @@ script = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="Floor"]
 scale = Vector2( 0.25, 0.25 )
-z_index = 7
+z_index = 5
 tile_set = SubResource( 23 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 6, 0, 1, 12, 0, 1, 18, 0, 1, 24, 0, 1, 30, 0, 1, 36, 0, 1, 42, 0, 1, 48, 0, 1, 54, 0, 1, 60, 0, 1, 66, 0, 1, 72, 0, 1, 78, 0, 1, 79, 0, 1, 83, 0, 1, 84, 0, 1, 90, 0, 1, 393216, 0, 65536, 786432, 0, 65536, 1179648, 0, 65536, 1572864, 0, 65536, 1638400, 0, 65536, 2031616, 0, 65536, 2424832, 0, 65536, 2818048, 0, 65536, 3211264, 0, 65536, 3604480, 0, 65536, 3997696, 0, 131072, 3997702, 0, 131073, 3997708, 0, 131073, 3997714, 0, 131073, 3997720, 0, 131073, 3997726, 0, 131073, 3997732, 0, 131073, 3997738, 0, 131073, 3997739, 0, 131073, 3997745, 0, 131073, 3997751, 0, 131073, 3997757, 0, 131073, 3997763, 0, 131073, 3997769, 0, 131073, 3997775, 0, 131073, 3997781, 0, 131073, 3997787, 0, 131073 )

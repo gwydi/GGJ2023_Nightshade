@@ -1,8 +1,12 @@
+<<<<<<< ours
 <<<<<<< HEAD
 [gd_scene load_steps=26 format=2]
 =======
 [gd_scene load_steps=16 format=2]
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+[gd_scene load_steps=16 format=2]
+>>>>>>> theirs
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]
@@ -15,7 +19,10 @@
 [ext_resource path="res://Sprites/Smolwalls_Tileset_Revamp_V3_Shadow.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Wall_Full.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Fence.png" type="Texture" id=8]
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 
 [sub_resource type="TileSet" id=1]
 resource_local_to_scene = true
@@ -161,6 +168,15 @@ points = PoolVector2Array( 0, 0, 400, 0, 400, 400, 0, 400 )
 [sub_resource type="ConvexPolygonShape2D" id=8]
 points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 141.2 )
 
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 143.993, 145.466, 149.298, 144.502, 149.298, 144.502, 400, 144.984, 399.587, 253.973, 256.84, 255.902, 255.394, 397.202, 145.922, 400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0, 0, 400, 0, 400, 400, 0, 400 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 141.2 )
+
 [sub_resource type="TileSet" id=4]
 1/name = "Smolwalls_Tileset_Revamp_V3_Shadow.png 1"
 1/texture = ExtResource( 6 )
@@ -186,15 +202,21 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 1, 0 ),
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
+<<<<<<< ours
 <<<<<<< HEAD
 "autotile_coord": Vector2( 4, 4 ),
 =======
+=======
+>>>>>>> theirs
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
@@ -298,14 +320,20 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 2 ),
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 7 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
+<<<<<<< ours
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> theirs
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
@@ -384,7 +412,10 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 "shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
@@ -394,16 +425,21 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
+<<<<<<< ours
 <<<<<<< HEAD
 "shape": SubResource( 9 ),
 =======
 "shape": SubResource( 8 ),
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+"shape": SubResource( 8 ),
+>>>>>>> theirs
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
+<<<<<<< ours
 <<<<<<< HEAD
 "shape": SubResource( 10 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -425,6 +461,8 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 "one_way_margin": 1.0,
 "shape": SubResource( 13 ),
 =======
+=======
+>>>>>>> theirs
 "shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
@@ -438,12 +476,16 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 8 ),
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
+<<<<<<< ours
 <<<<<<< HEAD
 "shape": SubResource( 14 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -479,11 +521,15 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 =======
 "shape": SubResource( 8 ),
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+"shape": SubResource( 8 ),
+>>>>>>> theirs
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
+<<<<<<< ours
 <<<<<<< HEAD
 "shape": SubResource( 20 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -496,6 +542,8 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 } ]
 0/z_index = 0
 =======
+=======
+>>>>>>> theirs
 "shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
@@ -518,7 +566,10 @@ points = PoolVector2Array( 396.4, 395.6, 2.79999, 395.6, 2.79999, 141.2, 396.4, 
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
+<<<<<<< ours
 >>>>>>> 82fe6442a27df4982dea0bb39fb6b658fe19f151
+=======
+>>>>>>> theirs
 
 [node name="Floor" type="StaticBody2D"]
 z_as_relative = false

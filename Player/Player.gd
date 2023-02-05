@@ -61,7 +61,7 @@ func _process(delta):
 		
 		timer -= delta
 		
-		if Input.is_action_pressed("ui_down") and STATE != playerStates.CHARGING:
+		if Input.is_action_pressed("charge_boost") and STATE != playerStates.CHARGING:
 			chargeTimer += delta
 			STATE = playerStates.HOLDING
 			if chargeTimer >= chargeMAXThreshhold:
@@ -76,9 +76,9 @@ func _process(delta):
 			else:
 				STATE = playerStates.MOVING
 		
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("steer_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
-		elif Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("steer_right"):
 			velocity = velocity.rotated(ROTATION_SPEED * delta)
 		rootHead.look_at(global_position + velocity * 100) 
 		deadHead.look_at(global_position + velocity * 100) 
@@ -100,7 +100,7 @@ func _physics_process(delta):
 		#print("Water level: " + str(water))
 		
 	elif STATE == playerStates.HOLDING:
-		if Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("charge_boost"):
 			update_water(water - velocity.length() * (chargeTimer + 1))
 
 func update_water(var newValue):

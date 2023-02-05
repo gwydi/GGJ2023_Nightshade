@@ -22,6 +22,7 @@ onready var vignetteMask = $VignetteMask
 
 onready var soundGrowing = $GrowSound
 onready var soundCharging = $ChargingSound
+onready var soundRelease = $ReleaseSound
 
 var velocity: Vector2 = Vector2(0.5,0) 
 
@@ -83,12 +84,11 @@ func _process(delta):
 			chargeTimer += delta * 10
 			Utils.camera.trauma += 0.025
 			Utils.camera.decay = 0.9
-			soundGrowing.volume_db = 4
+			soundGrowing.volume_db = -7
 			if !soundCharging.playing:
 				soundCharging.play()
 			STATE = playerStates.HOLDING
 			if chargeTimer >= chargeMAXThreshhold * 3:
-				
 				STATE = playerStates.CHARGING
 				Utils.camera.trauma += 1
 				Utils.camera.decay = 2
@@ -99,13 +99,16 @@ func _process(delta):
 			if chargeTimer > 0.2:
 				STATE = playerStates.CHARGING
 				print("Player Charging")
+				if soundCharging.playing:
+					soundCharging.stop()
+					soundRelease.volume_db = 5 * (chargeTimer / (chargeMAXThreshhold)) 
+					soundRelease.play()
 			else:
 				if STATE == playerStates.CHARGING:
 					rootCollision.disabled = true
 					rootCollision.disabled = false
 					Utils.camera.decay = 1
-					soundGrowing.volume_db = 6
-					soundCharging.stop()
+					soundGrowing.volume_db = -5
 				STATE = playerStates.MOVING
 		
 		if Input.is_action_pressed("steer_left"):

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/WhistlingGardener.mp3-8d9a080f29452c0b3ee94d5251429a2f.mp3str"
+
+[deps]
+
+source_file="res://Sounds/WhistlingGardener.mp3"
+dest_files=[ "res://.import/WhistlingGardener.mp3-8d9a080f29452c0b3ee94d5251429a2f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Root1.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Player/Root_Dead.png" type="Texture" id=6]
 [ext_resource path="res://Sounds/PlayerGrowing.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/PlayerCharging.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/PlayerRelease.mp3" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 10 )
@@ -110,9 +111,14 @@ anchor_bottom = 1.0
 
 [node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-volume_db = 6.0
+volume_db = -5.0
 pitch_scale = 0.4
 autoplay = true
+
+[node name="ReleaseSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = 6.328
+pitch_scale = 0.41
 
 [node name="ChargingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 8 )

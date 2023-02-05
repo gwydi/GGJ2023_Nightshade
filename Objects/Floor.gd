@@ -16,7 +16,7 @@ export(Dictionary) var speedMods = {
 
 var speedModsAgain = {
 	-1: 1,#not valid, tihi
-	1: 2.5, #Dirt
+	1: 2, #Dirt
 	2: 1.5, #Brick
 	3: 0.9, #Stone
 	10: 1, #not valid, tihi

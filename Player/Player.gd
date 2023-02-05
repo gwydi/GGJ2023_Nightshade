@@ -26,7 +26,7 @@ var points = 0
 var startLocation = Vector2(0,0)
 var connectedPots = []
 
-var maxWater = 2000
+var maxWater = 500
 var water = maxWater
 
 var chargeTimer = 0
@@ -61,7 +61,7 @@ func _process(delta):
 		
 		timer -= delta
 		
-		if Input.is_action_pressed("ui_down") and STATE != playerStates.CHARGING:
+		if Input.is_action_pressed("charge_boost") and STATE != playerStates.CHARGING:
 			chargeTimer += delta
 			STATE = playerStates.HOLDING
 			if chargeTimer >= chargeMAXThreshhold:
@@ -76,9 +76,9 @@ func _process(delta):
 			else:
 				STATE = playerStates.MOVING
 		
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("steer_left"):
 			velocity = velocity.rotated(-ROTATION_SPEED*delta) 
-		elif Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("steer_right"):
 			velocity = velocity.rotated(ROTATION_SPEED * delta)
 		rootHead.look_at(global_position + velocity * 100) 
 		deadHead.look_at(global_position + velocity * 100) 
@@ -100,7 +100,7 @@ func _physics_process(delta):
 		#print("Water level: " + str(water))
 		
 	elif STATE == playerStates.HOLDING:
-		if Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("charge_boost"):
 			update_water(water - velocity.length() * (chargeTimer + 1))
 
 func update_water(var newValue):
@@ -108,9 +108,9 @@ func update_water(var newValue):
 	#print(water)
 	var waterpercent : float = water / maxWater 
 	rootHead.modulate = Color(1,1,1, waterpercent)
-	testLine.modulate = Color(1,1,1, clamp(waterpercent,0.2,1))
+	testLine.modulate = Color(1,1,1, clamp(waterpercent,0,1))
 	deadHead.modulate = Color(1,1,1, -waterpercent + 1)
-	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,0.8))
+	deadRoot.modulate = Color(1,1,1, clamp(-waterpercent + 1,0,1))
 	#print(str(testLine.modulate.a) + " ::: " + str(deadRoot.modulate.a) + " ::: " + str(water))
 	
 	if water <= 0:
@@ -138,10 +138,10 @@ func reset_checkpoint(var playerInstance):
 
 func _on_DetectionArea_body_entered(body):
 	if body.is_in_group("RootNode"):
+		update_water(maxWater)
 		if not connectedPots.has(body):
 			body.connect_pot(testLine.points.size())
 			connectedPots.append(body)
-			water = maxWater
 			print("Connected Root to Pot with ID: " + str(testLine.points.size()))
 		else:
 			body.update_pot(testLine.points.size())

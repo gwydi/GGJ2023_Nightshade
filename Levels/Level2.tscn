@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=33 format=2]
-=======
 [gd_scene load_steps=23 format=2]
->>>>>>> 548dadea1d383b8e8d0a835bf8dad3f0d64696da
 
 [ext_resource path="res://Sprites/Stone_Tilemap.png" type="Texture" id=1]
 [ext_resource path="res://Objects/FloorTilemap.gd" type="Script" id=2]

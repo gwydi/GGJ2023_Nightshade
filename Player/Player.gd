@@ -20,6 +20,9 @@ onready var rootCollision = $DetectionArea/RootCollision
 onready var detectionAreaGen = $DetectionAreaGen
 onready var vignetteMask = $VignetteMask
 
+onready var soundGrowing = $GrowSound
+onready var soundCharging = $ChargingSound
+
 var velocity: Vector2 = Vector2(0.5,0) 
 
 var timer = 0
@@ -80,8 +83,12 @@ func _process(delta):
 			chargeTimer += delta * 10
 			Utils.camera.trauma += 0.025
 			Utils.camera.decay = 0.9
+			soundGrowing.volume_db = 4
+			if !soundCharging.playing:
+				soundCharging.play()
 			STATE = playerStates.HOLDING
 			if chargeTimer >= chargeMAXThreshhold * 3:
+				
 				STATE = playerStates.CHARGING
 				Utils.camera.trauma += 1
 				Utils.camera.decay = 2
@@ -97,6 +104,8 @@ func _process(delta):
 					rootCollision.disabled = true
 					rootCollision.disabled = false
 					Utils.camera.decay = 1
+					soundGrowing.volume_db = 6
+					soundCharging.stop()
 				STATE = playerStates.MOVING
 		
 		if Input.is_action_pressed("steer_left"):
@@ -148,6 +157,8 @@ func reset_checkpoint(var playerInstance):
 	testLine.modulate = Color(1,1,1, 0.2)
 	deadHead.modulate = Color(1,1,1, 0.8)
 	deadRoot.modulate = Color(1,1,1, 0.8)
+	soundGrowing.stop()
+	soundCharging.stop()
 	print("Player Deactivated")
 	
 	#Reset player position to last pot or starting point$

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Root1.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Player/RootHead.gd" type="Script" id=4]
 [ext_resource path="res://Player/Root_Head_Dead.png" type="Texture" id=5]
 [ext_resource path="res://Player/Root_Dead.png" type="Texture" id=6]
+[ext_resource path="res://Sounds/PlayerGrowing.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/PlayerCharging.mp3" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25, 10 )
@@ -105,6 +107,17 @@ visible = false
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = 6.0
+pitch_scale = 0.4
+autoplay = true
+
+[node name="ChargingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = 2.176
+pitch_scale = 0.7
 
 [connection signal="area_entered" from="DetectionAreaGen" to="." method="_on_DetectionArea_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]

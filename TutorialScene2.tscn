@@ -5,7 +5,7 @@
 
 [node name="Control" type="CanvasLayer"]
 script = ExtResource( 2 )
-nextScene = "res://Levels/Level1.tscn"
+nextScene = "res://Levels/FinalLevel1.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0

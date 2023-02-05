@@ -7,8 +7,11 @@ func _ready():
 	Utils.connect_hud(self)
 
 func _process(delta):
-	var playerWater = Utils.player.water
-	var playerMaxWater = Utils.player.maxWater
+	var playerWater = 10
+	var playerMaxWater = 10
+	if Utils.player != null:
+		playerWater =  Utils.player.water
+		playerMaxWater = Utils.player.maxWater
 	if playerWater != null:
 		$Control/TextureProgress.value = playerWater / playerMaxWater * 1000
 

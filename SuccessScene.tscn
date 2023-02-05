@@ -322,3 +322,4 @@ expand = true
 stretch_mode = 7
 
 [node name="LevelCamera" parent="." instance=ExtResource( 9 )]
+current = false

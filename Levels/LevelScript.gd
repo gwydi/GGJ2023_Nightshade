@@ -7,6 +7,8 @@ export(AudioStreamMP3) var levelBG
 func _ready():
 	Utils.set_hp(hp)
 	Utils.set_next_level(nextLevel)
+	Utils.connect_player(get_node("Player"))
+	
 	
 	if levelBG != null:
 		var audioPlayer = AudioStreamPlayer2D.new()

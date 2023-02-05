@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Gardener1.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Gardener1.png" type="Texture" id=1]
 [ext_resource path="res://Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Eye_closed.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/WhistlingGardener.mp3" type="AudioStream" id=4]
@@ -37,7 +37,7 @@ visible = false
 position = Vector2( 69.4738, -164.211 )
 polygon = PoolVector2Array( -195.79, 50.5264, -1717.9, 2652.64, 1402.11, 2665.27, 82.1054, 44.2106 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Indicator" type="Polygon2D" parent="."]
 z_index = -1
 color = Color( 0.631373, 0.113725, 0.219608, 0.423529 )
 antialiased = true

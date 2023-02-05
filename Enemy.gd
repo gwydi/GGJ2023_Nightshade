@@ -91,3 +91,4 @@ func _do_raycasting():
 		localPoints.append(to_local(intersection["position"]))
 		
 	$Indicator.polygon = PoolVector2Array(localPoints)
+
